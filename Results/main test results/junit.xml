@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests" tests="11" errors="0" failures="0" skipped="0" time="23.536" timestamp="2025-03-02T12:48:34.685657">
+<testsuite name="Example" tests="3" errors="0" failures="0" skipped="0" time="6.244" timestamp="2025-03-02T12:48:34.691956">
+<testcase classname="Tests.Example" name="Verify Confirmation Message After Submitting Message" time="2.630">
+</testcase>
+<testcase classname="Tests.Example" name="Verify Error Messages Are Correct" time="1.644">
+</testcase>
+<testcase classname="Tests.Example" name="Verify Admin Menu Tour" time="1.909">
+</testcase>
+<properties>
+<property name="Documentation" value="Example test file."/>
+</properties>
+</testsuite>
+<testsuite name="RESTTEsts" tests="2" errors="0" failures="0" skipped="0" time="3.307" timestamp="2025-03-02T12:48:40.936231">
+<testcase classname="Tests.RESTTEsts" name="Verify Contact Endpoint" time="0.343">
+</testcase>
+<testcase classname="Tests.RESTTEsts" name="Check Contact Message As An Admin" time="2.924">
+</testcase>
+</testsuite>
+<testsuite name="URLTest" tests="6" errors="0" failures="0" skipped="0" time="13.979" timestamp="2025-03-02T12:48:44.243271">
+<testcase classname="Tests.URLTest" name="URL Navigation Test" time="1.611">
+</testcase>
+<testcase classname="Tests.URLTest" name="Admin URL Navigation Test" time="2.325">
+</testcase>
+<testcase classname="Tests.URLTest" name="Message URL Navigation Test" time="2.518">
+</testcase>
+<testcase classname="Tests.URLTest" name="Messages URL Navigation Test" time="2.431">
+</testcase>
+<testcase classname="Tests.URLTest" name="Report URL Navigation Test" time="2.881">
+</testcase>
+<testcase classname="Tests.URLTest" name="Branding URL Navigation Test" time="2.208">
+</testcase>
+</testsuite>
+</testsuite>

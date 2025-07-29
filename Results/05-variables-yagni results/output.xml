@@ -1,0 +1,2473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.8 on darwin)" generated="2025-03-02T13:20:34.003846" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests">
+<suite id="s1-s1" name="REST" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/REST">
+<suite id="s1-s1-s1" name="ContactMessageTest" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/REST/ContactMessageTest.robot">
+<test id="s1-s1-s1-t1" name="Verify Message Endpoint Returns OK" line="18">
+<kw name="Post Request To Message Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.060001" level="INFO">${url} = http://tomtebook-pro.local:8080/message/</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE}/</var>
+<status status="PASS" start="2025-03-02T13:20:34.059815" elapsed="0.000201"/>
+</variable>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.077410" level="INFO">POST Request : url=http://tomtebook-pro.local:8080/message/ 
+ path_url=/message/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'name=banner; value=true; domain=tomtebook-pro.local', 'Content-Length': '125'} 
+ body=b'{"name": "sdf", "email": "sdf@sdf.sdf", "phone": "sdfsdfsdfsdf", "subject": "sdfsdf", "description": "sdfsdfsdfsdfsdfsdfsdf"}' 
+ </msg>
+<msg time="2025-03-02T13:20:34.077460" level="INFO">POST Response : url=http://tomtebook-pro.local:8080/message/ 
+ status=201, reason= 
+ headers={'Transfer-Encoding': 'chunked, chunked', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Type': 'application/json'} 
+ body={"messageid":10,"name":"sdf","email":"sdf@sdf.sdf","phone":"sdfsdfsdfsdf","subject":"sdfsdf","description":"sdfsdfsdfsdfsdfsdfsdf"} 
+ </msg>
+<msg time="2025-03-02T13:20:34.077515" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>cookies=${BANNER_COOKIE}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.060165" elapsed="0.017361"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.077566" elapsed="0.000027"/>
+</return>
+<arg>json=${MESSAGE_BODY}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.059704" elapsed="0.017938"/>
+</kw>
+<kw name="Request Should Be Successful" owner="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<status status="PASS" start="2025-03-02T13:20:34.077741" elapsed="0.000058"/>
+</kw>
+<doc>Verify the message endpoint returns a 200 OK</doc>
+<tag>admin</tag>
+<tag>contact-message</tag>
+<tag>rest-api</tag>
+<status status="PASS" start="2025-03-02T13:20:34.059407" elapsed="0.018452"/>
+</test>
+<test id="s1-s1-s1-t2" name="Verify Admin Can Read Message" line="23">
+<kw name="Post Request To Authentication Endpoint" owner="Authentication">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.078470" level="INFO">${url} = http://tomtebook-pro.local:8080/auth/login</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.AUTH}</var>
+<status status="PASS" start="2025-03-02T13:20:34.078287" elapsed="0.000193"/>
+</variable>
+<variable name="&amp;{json}">
+<msg time="2025-03-02T13:20:34.078546" level="INFO">&amp;{json} = { username=admin | password=password }</msg>
+<var>username=${username}</var>
+<var>password=${password}</var>
+<status status="PASS" start="2025-03-02T13:20:34.078495" elapsed="0.000059"/>
+</variable>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.087005" level="INFO">POST Request : url=http://tomtebook-pro.local:8080/auth/login 
+ path_url=/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password"}' 
+ </msg>
+<msg time="2025-03-02T13:20:34.087049" level="INFO">POST Response : url=http://tomtebook-pro.local:8080/auth/login 
+ status=200, reason= 
+ headers={'Set-Cookie': 'token=e71gS8KySTuhQFLk; Path=/', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.087159" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.078587" elapsed="0.008582"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.087205" elapsed="0.000024"/>
+</return>
+<msg time="2025-03-02T13:20:34.087292" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>&amp;{ADMIN_CREDENTIALS}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.078120" elapsed="0.009180"/>
+</kw>
+<kw name="Get Token Cookie From Response" owner="Authentication">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:34.087880" level="INFO">${cookie_string} = token=e71gS8KySTuhQFLk; Path=/</msg>
+<var>${cookie_string}</var>
+<arg>${response.headers}</arg>
+<arg>Set-Cookie</arg>
+<arg>token=${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.087574" elapsed="0.000315"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${cookie_string}</arg>
+<arg>token</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.087972" elapsed="0.000051"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:34.088113" level="INFO">${token_path_list} = ['token=e71gS8KySTuhQFLk', ' Path=/']</msg>
+<var>${token_path_list}</var>
+<arg>${cookie_string}</arg>
+<arg>separator=;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.088058" elapsed="0.000063"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:34.088202" level="INFO">${token_string} = token=e71gS8KySTuhQFLk</msg>
+<var>${token_string}</var>
+<arg>${token_path_list}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.088154" elapsed="0.000054"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:34.088290" level="INFO">${token_value_list} = ['token', 'e71gS8KySTuhQFLk']</msg>
+<var>${token_value_list}</var>
+<arg>${token_string}</arg>
+<arg>separator==</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.088240" elapsed="0.000058"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:34.088373" level="INFO">${value} = e71gS8KySTuhQFLk</msg>
+<var>${value}</var>
+<arg>${token_value_list}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.088330" elapsed="0.000049"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<msg time="2025-03-02T13:20:34.088442" level="INFO">&amp;{cookie_dict} = { token=e71gS8KySTuhQFLk }</msg>
+<var>token=${value}</var>
+<status status="PASS" start="2025-03-02T13:20:34.088394" elapsed="0.000056"/>
+</variable>
+<status status="PASS" start="2025-03-02T13:20:34.087931" elapsed="0.000529"/>
+</branch>
+<branch type="EXCEPT" assign="${error}">
+<kw name="Log" owner="BuiltIn">
+<arg>${error}</arg>
+<arg>ERROR</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:34.088506" elapsed="0.000006"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<var>token=${NONE}</var>
+<status status="NOT RUN" start="2025-03-02T13:20:34.088526" elapsed="0.000006"/>
+</variable>
+<status status="NOT RUN" start="2025-03-02T13:20:34.088475" elapsed="0.000153"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:34.087913" elapsed="0.000727"/>
+</try>
+<return>
+<value>${cookie_dict}</value>
+<status status="PASS" start="2025-03-02T13:20:34.088652" elapsed="0.000009"/>
+</return>
+<msg time="2025-03-02T13:20:34.088700" level="INFO">${token_cookie} = {'token': 'e71gS8KySTuhQFLk'}</msg>
+<var>${token_cookie}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.087457" elapsed="0.001250"/>
+</kw>
+<kw name="Get Request From Message Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.088998" level="INFO">${url} = http://tomtebook-pro.local:8080/message/</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE}/</var>
+<status status="PASS" start="2025-03-02T13:20:34.088843" elapsed="0.000164"/>
+</variable>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.095790" level="INFO">GET Request : url=http://tomtebook-pro.local:8080/message/ 
+ path_url=/message/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'token=e71gS8KySTuhQFLk'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.095829" level="INFO">GET Response : url=http://tomtebook-pro.local:8080/message/ 
+ status=200, reason= 
+ headers={'Transfer-Encoding': 'chunked, chunked', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Type': 'application/json'} 
+ body={"messages":[{"id":1,"name":"James Dean","subject":"Booking enquiry","read":false},{"id":2,"name":"sdf","subject":"sdfsdf","read":true},{"id":3,"name":"Bob Builder","subject":"Building things","read":true},{"id":4,"name":"sdf","subject":"sdfsdf","read":true},{"id":5,"name":"Bob Builder","subject":"Building things","read":true},{"id":6,"name":"sdf","subject":"sdfsdf","read":false},{"id":7,"name":"Bob Builder","subject":"Building things","read":false},{"id":8,"name":"sdf","subject":"sdfsdf","read":false},{"id":9,"name":"Bob Builder","subject":"Building things","read":false},{"id":10,"name":"sdf","subject":"sdfsdf","read":false}]} 
+ </msg>
+<msg time="2025-03-02T13:20:34.095883" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}</arg>
+<arg>cookies=${token_cookie}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.089040" elapsed="0.006853"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.095923" elapsed="0.000020"/>
+</return>
+<msg time="2025-03-02T13:20:34.095994" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.088775" elapsed="0.007227"/>
+</kw>
+<kw name="Get False Reads From Message Response" owner="Messages">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:34.096497" level="INFO">${messages} = [{'id': 1, 'name': 'James Dean', 'subject': 'Booking enquiry', 'read': False}, {'id': 2, 'name': 'sdf', 'subject': 'sdfsdf', 'read': True}, {'id': 3, 'name': 'Bob Builder', 'subject': 'Building things...</msg>
+<var>${messages}</var>
+<arg>${response.json()}</arg>
+<arg>messages</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.096221" elapsed="0.000289"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-02T13:20:34.096681" level="INFO">${false_reads} = [{'id': 1, 'name': 'James Dean', 'subject': 'Booking enquiry', 'read': False}, {'id': 6, 'name': 'sdf', 'subject': 'sdfsdf', 'read': False}, {'id': 7, 'name': 'Bob Builder', 'subject': 'Building thing...</msg>
+<var>${false_reads}</var>
+<arg>[message for message in $messages if message['read'] == False]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.096553" elapsed="0.000136"/>
+</kw>
+<return>
+<value>${false_reads}</value>
+<status status="PASS" start="2025-03-02T13:20:34.096703" elapsed="0.000011"/>
+</return>
+<msg time="2025-03-02T13:20:34.096755" level="INFO">${false_reads} = [{'id': 1, 'name': 'James Dean', 'subject': 'Booking enquiry', 'read': False}, {'id': 6, 'name': 'sdf', 'subject': 'sdfsdf', 'read': False}, {'id': 7, 'name': 'Bob Builder', 'subject': 'Building thing...</msg>
+<var>${false_reads}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.096107" elapsed="0.000656"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-03-02T13:20:34.096851" level="INFO">Length is 6.</msg>
+<msg time="2025-03-02T13:20:34.096871" level="INFO">${before_read} = 6</msg>
+<var>${before_read}</var>
+<arg>${false_reads}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.096813" elapsed="0.000064"/>
+</kw>
+<kw name="Get Id Of Second False Read" owner="Messages">
+<try>
+<branch type="TRY">
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:34.097360" level="INFO">${false_read} = {'id': 6, 'name': 'sdf', 'subject': 'sdfsdf', 'read': False}</msg>
+<var>${false_read}</var>
+<arg>${false_reads}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.097296" elapsed="0.000075"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:34.097489" level="INFO">${id} = 6</msg>
+<var>${id}</var>
+<arg>${false_read}</arg>
+<arg>id</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.097412" elapsed="0.000086"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:34.097255" elapsed="0.000259"/>
+</branch>
+<branch type="EXCEPT" assign="${error}">
+<kw name="Log" owner="BuiltIn">
+<arg>${error}</arg>
+<arg>ERROR</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:34.097565" elapsed="0.000008"/>
+</kw>
+<variable name="${id}">
+<var>${NONE}</var>
+<status status="NOT RUN" start="2025-03-02T13:20:34.097590" elapsed="0.000007"/>
+</variable>
+<status status="NOT RUN" start="2025-03-02T13:20:34.097532" elapsed="0.000074"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:34.097237" elapsed="0.000381"/>
+</try>
+<return>
+<value>${id}</value>
+<status status="PASS" start="2025-03-02T13:20:34.097632" elapsed="0.000011"/>
+</return>
+<msg time="2025-03-02T13:20:34.097682" level="INFO">${id} = 6</msg>
+<var>${id}</var>
+<arg>${false_reads}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.097145" elapsed="0.000544"/>
+</kw>
+<kw name="Get Request From Message Count Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.097988" level="INFO">${url} = http://tomtebook-pro.local:8080/message/count</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE_COUNT}</var>
+<status status="PASS" start="2025-03-02T13:20:34.097829" elapsed="0.000168"/>
+</variable>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.105144" level="INFO">GET Request : url=http://tomtebook-pro.local:8080/message/count 
+ path_url=/message/count 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'token=e71gS8KySTuhQFLk'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.105173" level="INFO">GET Response : url=http://tomtebook-pro.local:8080/message/count 
+ status=200, reason= 
+ headers={'Transfer-Encoding': 'chunked, chunked', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Type': 'application/json'} 
+ body={"count":6} 
+ </msg>
+<msg time="2025-03-02T13:20:34.105211" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}</arg>
+<arg>cookies=${token_cookie}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.098031" elapsed="0.007233"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.105289" elapsed="0.000016"/>
+</return>
+<msg time="2025-03-02T13:20:34.105374" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.097765" elapsed="0.007617"/>
+</kw>
+<variable name="${before_count}">
+<msg time="2025-03-02T13:20:34.105593" level="INFO">${before_count} = {'count': 6}</msg>
+<var>${response.json()}</var>
+<status status="PASS" start="2025-03-02T13:20:34.105415" elapsed="0.000187"/>
+</variable>
+<kw name="Put Request To Read Message Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.106012" level="INFO">${url} = http://tomtebook-pro.local:8080/message/6/read</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE}/${id}/${RB_REST_EXT.READ}</var>
+<status status="PASS" start="2025-03-02T13:20:34.105763" elapsed="0.000258"/>
+</variable>
+<kw name="PUT" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.118954" level="INFO">PUT Request : url=http://tomtebook-pro.local:8080/message/6/read 
+ path_url=/message/6/read 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'token=e71gS8KySTuhQFLk', 'Content-Length': '105'} 
+ body=b'{"headers": {"Accept": "application/json", "Content-Type": "application/json"}, "credentials": "include"}' 
+ </msg>
+<msg time="2025-03-02T13:20:34.119008" level="INFO">PUT Response : url=http://tomtebook-pro.local:8080/message/6/read 
+ status=202, reason= 
+ headers={'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.119062" level="INFO">${response} = &lt;Response [202]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}</arg>
+<arg>cookies=${token_cookie}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<arg>json=${INCLUDE_CREDENTIALS}</arg>
+<doc>Sends a PUT request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.106058" elapsed="0.013015"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.119106" elapsed="0.000022"/>
+</return>
+<arg>${id}</arg>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.105685" elapsed="0.013488"/>
+</kw>
+<kw name="Get Request From One Message Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.119622" level="INFO">${url} = http://tomtebook-pro.local:8080/message/6</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE}/${id}</var>
+<status status="PASS" start="2025-03-02T13:20:34.119405" elapsed="0.000228"/>
+</variable>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.124851" level="INFO">GET Request : url=http://tomtebook-pro.local:8080/message/6 
+ path_url=/message/6 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'token=e71gS8KySTuhQFLk'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.124921" level="INFO">GET Response : url=http://tomtebook-pro.local:8080/message/6 
+ status=200, reason= 
+ headers={'Transfer-Encoding': 'chunked, chunked', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Type': 'application/json'} 
+ body={"messageid":6,"name":"sdf","email":"sdf@sdf.sdf","phone":"sdfsdfsdfsdf","subject":"sdfsdf","description":"sdfsdfsdfsdfsdfsdfsdf"} 
+ </msg>
+<msg time="2025-03-02T13:20:34.124974" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}</arg>
+<arg>cookies=${token_cookie}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.119684" elapsed="0.005300"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.125011" elapsed="0.000019"/>
+</return>
+<arg>${id}</arg>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.119304" elapsed="0.005796"/>
+</kw>
+<kw name="Get Request From Message Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.125681" level="INFO">${url} = http://tomtebook-pro.local:8080/message/</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE}/</var>
+<status status="PASS" start="2025-03-02T13:20:34.125483" elapsed="0.000211"/>
+</variable>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.131445" level="INFO">GET Request : url=http://tomtebook-pro.local:8080/message/ 
+ path_url=/message/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'token=e71gS8KySTuhQFLk'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.131488" level="INFO">GET Response : url=http://tomtebook-pro.local:8080/message/ 
+ status=200, reason= 
+ headers={'Transfer-Encoding': 'chunked, chunked', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Type': 'application/json'} 
+ body={"messages":[{"id":1,"name":"James Dean","subject":"Booking enquiry","read":false},{"id":2,"name":"sdf","subject":"sdfsdf","read":true},{"id":3,"name":"Bob Builder","subject":"Building things","read":true},{"id":4,"name":"sdf","subject":"sdfsdf","read":true},{"id":5,"name":"Bob Builder","subject":"Building things","read":true},{"id":6,"name":"sdf","subject":"sdfsdf","read":true},{"id":7,"name":"Bob Builder","subject":"Building things","read":false},{"id":8,"name":"sdf","subject":"sdfsdf","read":false},{"id":9,"name":"Bob Builder","subject":"Building things","read":false},{"id":10,"name":"sdf","subject":"sdfsdf","read":false}]} 
+ </msg>
+<msg time="2025-03-02T13:20:34.131571" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}</arg>
+<arg>cookies=${token_cookie}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.125743" elapsed="0.005841"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.131619" elapsed="0.000020"/>
+</return>
+<msg time="2025-03-02T13:20:34.131712" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.125377" elapsed="0.006345"/>
+</kw>
+<kw name="Get False Reads From Message Response" owner="Messages">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:34.132250" level="INFO">${messages} = [{'id': 1, 'name': 'James Dean', 'subject': 'Booking enquiry', 'read': False}, {'id': 2, 'name': 'sdf', 'subject': 'sdfsdf', 'read': True}, {'id': 3, 'name': 'Bob Builder', 'subject': 'Building things...</msg>
+<var>${messages}</var>
+<arg>${response.json()}</arg>
+<arg>messages</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.131964" elapsed="0.000297"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-03-02T13:20:34.132435" level="INFO">${false_reads} = [{'id': 1, 'name': 'James Dean', 'subject': 'Booking enquiry', 'read': False}, {'id': 7, 'name': 'Bob Builder', 'subject': 'Building things', 'read': False}, {'id': 8, 'name': 'sdf', 'subject': 'sdfsd...</msg>
+<var>${false_reads}</var>
+<arg>[message for message in $messages if message['read'] == False]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.132305" elapsed="0.000139"/>
+</kw>
+<return>
+<value>${false_reads}</value>
+<status status="PASS" start="2025-03-02T13:20:34.132504" elapsed="0.000012"/>
+</return>
+<msg time="2025-03-02T13:20:34.132562" level="INFO">${false_reads} = [{'id': 1, 'name': 'James Dean', 'subject': 'Booking enquiry', 'read': False}, {'id': 7, 'name': 'Bob Builder', 'subject': 'Building things', 'read': False}, {'id': 8, 'name': 'sdf', 'subject': 'sdfsd...</msg>
+<var>${false_reads}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.131834" elapsed="0.000737"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-03-02T13:20:34.132665" level="INFO">Length is 5.</msg>
+<msg time="2025-03-02T13:20:34.132687" level="INFO">${after_read} = 5</msg>
+<var>${after_read}</var>
+<arg>${false_reads}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.132623" elapsed="0.000070"/>
+</kw>
+<kw name="Get Request From Message Count Endpoint" owner="Messages">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:34.133001" level="INFO">${url} = http://tomtebook-pro.local:8080/message/count</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.MESSAGE_COUNT}</var>
+<status status="PASS" start="2025-03-02T13:20:34.132833" elapsed="0.000178"/>
+</variable>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:34.138167" level="INFO">GET Request : url=http://tomtebook-pro.local:8080/message/count 
+ path_url=/message/count 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'token=e71gS8KySTuhQFLk'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:34.138196" level="INFO">GET Response : url=http://tomtebook-pro.local:8080/message/count 
+ status=200, reason= 
+ headers={'Transfer-Encoding': 'chunked, chunked', 'Date': 'Sun, 02 Mar 2025 19:20:34 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Type': 'application/json'} 
+ body={"count":5} 
+ </msg>
+<msg time="2025-03-02T13:20:34.138236" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}</arg>
+<arg>cookies=${token_cookie}</arg>
+<arg>headers=${COMMON_HEADERS}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.133050" elapsed="0.005196"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:34.138272" elapsed="0.000017"/>
+</return>
+<msg time="2025-03-02T13:20:34.138335" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.132763" elapsed="0.005580"/>
+</kw>
+<variable name="${after_count}">
+<msg time="2025-03-02T13:20:34.138577" level="INFO">${after_count} = {'count': 5}</msg>
+<var>${response.json()}</var>
+<status status="PASS" start="2025-03-02T13:20:34.138382" elapsed="0.000205"/>
+</variable>
+<kw name="Verify Count And Read Are Correct">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:34.138967" level="INFO">${before_count_value} = 6</msg>
+<var>${before_count_value}</var>
+<arg>${before_count}</arg>
+<arg>count</arg>
+<arg>${0}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.138804" elapsed="0.000172"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:34.139158" level="INFO">${after_count_value} = 5</msg>
+<var>${after_count_value}</var>
+<arg>${after_count}</arg>
+<arg>count</arg>
+<arg>${0}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.139014" elapsed="0.000154"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${before_count_value-1}</arg>
+<arg>${after_count_value}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.139207" elapsed="0.000222"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${before_read-1}</arg>
+<arg>${after_read}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.139467" elapsed="0.000190"/>
+</kw>
+<arg>${before_count}</arg>
+<arg>${after_count}</arg>
+<arg>${before_read}</arg>
+<arg>${after_read}</arg>
+<status status="PASS" start="2025-03-02T13:20:34.138670" elapsed="0.001007"/>
+</kw>
+<tag>admin</tag>
+<tag>contact-message</tag>
+<tag>rest-api</tag>
+<status status="PASS" start="2025-03-02T13:20:34.077953" elapsed="0.061789"/>
+</test>
+<status status="PASS" start="2025-03-02T13:20:34.010916" elapsed="0.129005"/>
+</suite>
+<status status="PASS" start="2025-03-02T13:20:34.010603" elapsed="0.129509"/>
+</suite>
+<suite id="s1-s2" name="UI" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI">
+<suite id="s1-s2-s1" name="AdminTests" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI/AdminTests">
+<suite id="s1-s2-s1-s1" name="AdminMenuPermissionsTest" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI/AdminTests/AdminMenuPermissionsTest.robot">
+<test id="s1-s2-s1-s1-t1" name="Verify Admin Menu Permissions" line="11">
+<kw name="New Web Browser" owner="Selenium" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:34.194411" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.194298" elapsed="1.036000"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.230812" elapsed="0.021836"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.252758" elapsed="0.018047"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.230566" elapsed="0.040289"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:35.230526" elapsed="0.040363"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:34.194081" elapsed="1.076862"/>
+</kw>
+<kw name="Navigate To Admin Login Page" owner="Selenium">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:35.271555" level="INFO">${url} = http://tomtebook-pro.local:8080/#/admin</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}</var>
+<status status="PASS" start="2025-03-02T13:20:35.271280" elapsed="0.000293"/>
+</variable>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.271860" level="INFO">Opening url 'http://tomtebook-pro.local:8080/#/admin'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.271741" elapsed="0.004045"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.275899" elapsed="0.002027"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.271157" elapsed="0.006819"/>
+</kw>
+<kw name="Enter Username" owner="Login">
+<variable name="${login_username_input}">
+<msg time="2025-03-02T13:20:35.278226" level="INFO">${login_username_input} = id=username</msg>
+<var>id=username</var>
+<status status="PASS" start="2025-03-02T13:20:35.278192" elapsed="0.000044"/>
+</variable>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${login_username_input}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.278284" elapsed="0.217326"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.496140" level="INFO">Typing text 'admin' into text field 'id=username'.</msg>
+<arg>${login_username_input}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.495847" elapsed="0.094150"/>
+</kw>
+<arg>${ADMIN_CREDENTIALS}[username]</arg>
+<status status="PASS" start="2025-03-02T13:20:35.278095" elapsed="0.311968"/>
+</kw>
+<kw name="Enter Password" owner="Login">
+<variable name="${login_password_input}">
+<msg time="2025-03-02T13:20:35.590387" level="INFO">${login_password_input} = id=password</msg>
+<var>id=password</var>
+<status status="PASS" start="2025-03-02T13:20:35.590347" elapsed="0.000055"/>
+</variable>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${login_password_input}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.590468" elapsed="0.004700"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.595363" level="INFO">Typing password into text field 'id=password'.</msg>
+<msg time="2025-03-02T13:20:35.604908" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>${login_password_input}</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.595250" elapsed="0.029165"/>
+</kw>
+<arg>${ADMIN_CREDENTIALS}[password]</arg>
+<status status="PASS" start="2025-03-02T13:20:35.590208" elapsed="0.034281"/>
+</kw>
+<kw name="Click Login Button" owner="Login">
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>id=doLogin</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.624960" elapsed="0.009603"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.634742" level="INFO">Clicking button 'Login'.</msg>
+<arg>Login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.634648" elapsed="0.024651"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.624660" elapsed="0.034690"/>
+</kw>
+<kw name="Wait For Booking Management To Load" owner="Navbar">
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.659588" elapsed="0.001421"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${BOOKING_MGT_TITLE}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.661057" elapsed="0.003269"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.659466" elapsed="0.004885"/>
+</kw>
+<kw name="Click Rooms Navbar Link" owner="Navbar">
+<variable name="${rooms_link}">
+<msg time="2025-03-02T13:20:35.664542" level="INFO">${rooms_link} = xpath://li/a[contains(@href, "admin")][text()="Rooms"]</msg>
+<var>xpath://li/a[contains(@href, "admin")][text()="Rooms"]</var>
+<status status="PASS" start="2025-03-02T13:20:35.664495" elapsed="0.000060"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${rooms_link}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.664604" elapsed="0.012506"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.677365" level="INFO">Clicking element 'xpath://li/a[contains(@href, "admin")][text()="Rooms"]'.</msg>
+<arg>${rooms_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.677214" elapsed="0.019823"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.697133" elapsed="0.002948"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.664426" elapsed="0.035706"/>
+</kw>
+<kw name="Click Report Navbar Link" owner="Navbar">
+<variable name="${report_link}">
+<msg time="2025-03-02T13:20:35.700443" level="INFO">${report_link} = id=reportLink</msg>
+<var>id=reportLink</var>
+<status status="PASS" start="2025-03-02T13:20:35.700405" elapsed="0.000051"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${report_link}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.700515" elapsed="0.005937"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.706604" level="INFO">Clicking element 'id=reportLink'.</msg>
+<arg>${report_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.706520" elapsed="0.019990"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.REPORT}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.726619" elapsed="0.009051"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.700259" elapsed="0.035468"/>
+</kw>
+<kw name="Click Branding Navbar Link" owner="Navbar">
+<variable name="${branding_link}">
+<msg time="2025-03-02T13:20:35.735977" level="INFO">${branding_link} = id=brandingLink</msg>
+<var>id=brandingLink</var>
+<status status="PASS" start="2025-03-02T13:20:35.735937" elapsed="0.000052"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${branding_link}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.736055" elapsed="0.006402"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.742619" level="INFO">Clicking element 'id=brandingLink'.</msg>
+<arg>${branding_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.742534" elapsed="0.019145"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.BRANDING}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.761810" elapsed="0.003212"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.735848" elapsed="0.029236"/>
+</kw>
+<kw name="Click Notifications Navbar Link" owner="Navbar">
+<variable name="${notifications_link}">
+<msg time="2025-03-02T13:20:35.765625" level="INFO">${notifications_link} = css=a.nav-link[href="#/admin/messages"]</msg>
+<var>css=a.nav-link[href="${RB_URL_EXT.ADMIN}/${RB_URL_EXT.MESSAGES}"]</var>
+<status status="PASS" start="2025-03-02T13:20:35.765318" elapsed="0.000322"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${notifications_link}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.765709" elapsed="0.006357"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.772283" level="INFO">Clicking element 'css=a.nav-link[href="#/admin/messages"]'.</msg>
+<arg>${notifications_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.772179" elapsed="0.019114"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.MESSAGES}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.791399" elapsed="0.003311"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.765225" elapsed="0.029545"/>
+</kw>
+<kw name="Click Front Page Navbar Link" owner="Navbar">
+<variable name="${front_page_link}">
+<msg time="2025-03-02T13:20:35.795024" level="INFO">${front_page_link} = id=frontPageLink</msg>
+<var>id=frontPageLink</var>
+<status status="PASS" start="2025-03-02T13:20:35.794986" elapsed="0.000051"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${front_page_link}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.795124" elapsed="0.005982"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.801282" level="INFO">Clicking element 'id=frontPageLink'.</msg>
+<arg>${front_page_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.801184" elapsed="0.028691"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.829973" elapsed="0.001626"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.794894" elapsed="0.036753"/>
+</kw>
+<kw name="Go Back" owner="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.831731" elapsed="0.009147"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.MESSAGES}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.841124" elapsed="0.002823"/>
+</kw>
+<kw name="Click Logout Navbar Link" owner="Navbar">
+<variable name="${logout_link}">
+<msg time="2025-03-02T13:20:35.844430" level="INFO">${logout_link} = css=a.nav-link[href="#/admin"]</msg>
+<var>css=a.nav-link[href="${RB_URL_EXT.ADMIN}"]</var>
+<status status="PASS" start="2025-03-02T13:20:35.844221" elapsed="0.000225"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${logout_link}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.844514" elapsed="0.008194"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.852924" level="INFO">Clicking element 'css=a.nav-link[href="#/admin"]'.</msg>
+<arg>${logout_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.852812" elapsed="0.024793"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.877707" elapsed="0.001492"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:35.844115" elapsed="0.035121"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.879351" elapsed="0.071670"/>
+</kw>
+<tag>admin</tag>
+<tag>happy-path</tag>
+<tag>menu-tour</tag>
+<tag>ui-api</tag>
+<status status="PASS" start="2025-03-02T13:20:34.193860" elapsed="1.757261"/>
+</test>
+<doc>Example test file.</doc>
+<status status="PASS" start="2025-03-02T13:20:34.140991" elapsed="1.810320"/>
+</suite>
+<suite id="s1-s2-s1-s2" name="URLNavigationTest" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI/AdminTests/URLNavigationTest.robot">
+<test id="s1-s2-s1-s2-t1" name="URL Navigation Test" line="13">
+<kw name="New Web Browser" owner="Selenium" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:35.955031" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:35.954933" elapsed="0.932325"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:36.887709" elapsed="0.000018"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:36.887785" elapsed="0.000013"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:36.887467" elapsed="0.000347"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:36.887436" elapsed="0.000397"/>
+</if>
+<arg>add_banner_cookie=${FALSE}</arg>
+<status status="PASS" start="2025-03-02T13:20:35.954809" elapsed="0.933066"/>
+</kw>
+<kw name="Click Let Me Hack Button" owner="Selenium">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:36.888353" level="INFO">Clicking button 'Let me hack!'.</msg>
+<arg>Let me hack!</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:36.888212" elapsed="0.054459"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:36.888051" elapsed="0.054682"/>
+</kw>
+<kw name="Verify Banner Cookie" owner="Selenium">
+<kw name="Get Cookies" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:36.944763" level="INFO">${cookies} = banner=true</msg>
+<var>${cookies}</var>
+<doc>Returns all cookies of the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:36.943015" elapsed="0.001766"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${cookies}</arg>
+<arg>${BANNER_COOKIE}[name]=${BANNER_COOKIE}[value]</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-03-02T13:20:36.944863" elapsed="0.000133"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:36.942866" elapsed="0.002160"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:36.945171" elapsed="0.069179"/>
+</kw>
+<tag>admin</tag>
+<tag>ui-api</tag>
+<tag>url-navigation</tag>
+<status status="PASS" start="2025-03-02T13:20:35.954626" elapsed="1.059830"/>
+</test>
+<test id="s1-s2-s1-s2-t2" name="Admin URL Navigation Test" line="19">
+<kw name="New Web Browser" owner="Selenium" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:37.015131" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:37.015014" elapsed="0.878055"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:37.893739" elapsed="0.000020"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:37.893813" elapsed="0.000010"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:37.893391" elapsed="0.000446"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:37.893336" elapsed="0.000517"/>
+</if>
+<arg>add_banner_cookie=${FALSE}</arg>
+<status status="PASS" start="2025-03-02T13:20:37.014849" elapsed="0.879055"/>
+</kw>
+<kw name="Click Let Me Hack Button" owner="Selenium">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:37.894334" level="INFO">Clicking button 'Let me hack!'.</msg>
+<arg>Let me hack!</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:37.894219" elapsed="0.039493"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:37.894067" elapsed="0.039708"/>
+</kw>
+<kw name="Navigate To Admin Login Page" owner="Selenium">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:37.934288" level="INFO">${url} = http://tomtebook-pro.local:8080/#/admin</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}</var>
+<status status="PASS" start="2025-03-02T13:20:37.934014" elapsed="0.000287"/>
+</variable>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:37.934475" level="INFO">Opening url 'http://tomtebook-pro.local:8080/#/admin'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:37.934416" elapsed="0.002410"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:37.936919" elapsed="0.001077"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:37.933916" elapsed="0.004116"/>
+</kw>
+<kw name="Wait For Login Header To Load" owner="Login">
+<variable name="${login_header}">
+<msg time="2025-03-02T13:20:37.938248" level="INFO">${login_header} = css=h2[data-testid="login-header"]</msg>
+<var>css=h2[data-testid="login-header"]</var>
+<status status="PASS" start="2025-03-02T13:20:37.938214" elapsed="0.000045"/>
+</variable>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${login_header}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:37.938314" elapsed="0.212650"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${login_header}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.151080" elapsed="0.004721"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:37.938139" elapsed="0.217708"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.155976" elapsed="0.067593"/>
+</kw>
+<tag>admin</tag>
+<tag>ui-api</tag>
+<tag>url-navigation</tag>
+<status status="PASS" start="2025-03-02T13:20:37.014621" elapsed="1.209034"/>
+</test>
+<test id="s1-s2-s1-s2-t3" name="Room URL Navigation Test" line="26">
+<kw name="Post Request To Authentication Endpoint" owner="Authentication">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:38.224385" level="INFO">${url} = http://tomtebook-pro.local:8080/auth/login</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.AUTH}</var>
+<status status="PASS" start="2025-03-02T13:20:38.224180" elapsed="0.000218"/>
+</variable>
+<variable name="&amp;{json}">
+<msg time="2025-03-02T13:20:38.224502" level="INFO">&amp;{json} = { username=admin | password=password }</msg>
+<var>username=${username}</var>
+<var>password=${password}</var>
+<status status="PASS" start="2025-03-02T13:20:38.224421" elapsed="0.000091"/>
+</variable>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:38.232677" level="INFO">POST Request : url=http://tomtebook-pro.local:8080/auth/login 
+ path_url=/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password"}' 
+ </msg>
+<msg time="2025-03-02T13:20:38.232715" level="INFO">POST Response : url=http://tomtebook-pro.local:8080/auth/login 
+ status=200, reason= 
+ headers={'Set-Cookie': 'token=zfeeBa28jvJcIO5d; Path=/', 'Date': 'Sun, 02 Mar 2025 19:20:37 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:38.232801" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.224567" elapsed="0.008245"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:38.232852" elapsed="0.000033"/>
+</return>
+<msg time="2025-03-02T13:20:38.232941" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>&amp;{ADMIN_CREDENTIALS}</arg>
+<status status="PASS" start="2025-03-02T13:20:38.224075" elapsed="0.008875"/>
+</kw>
+<kw name="Get Token Cookie From Response" owner="Authentication">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:38.233524" level="INFO">${cookie_string} = token=zfeeBa28jvJcIO5d; Path=/</msg>
+<var>${cookie_string}</var>
+<arg>${response.headers}</arg>
+<arg>Set-Cookie</arg>
+<arg>token=${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.233209" elapsed="0.000328"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${cookie_string}</arg>
+<arg>token</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.233629" elapsed="0.000052"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:38.233795" level="INFO">${token_path_list} = ['token=zfeeBa28jvJcIO5d', ' Path=/']</msg>
+<var>${token_path_list}</var>
+<arg>${cookie_string}</arg>
+<arg>separator=;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.233720" elapsed="0.000086"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:38.233930" level="INFO">${token_string} = token=zfeeBa28jvJcIO5d</msg>
+<var>${token_string}</var>
+<arg>${token_path_list}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.233869" elapsed="0.000072"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:38.234038" level="INFO">${token_value_list} = ['token', 'zfeeBa28jvJcIO5d']</msg>
+<var>${token_value_list}</var>
+<arg>${token_string}</arg>
+<arg>separator==</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.233990" elapsed="0.000056"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:38.234164" level="INFO">${value} = zfeeBa28jvJcIO5d</msg>
+<var>${value}</var>
+<arg>${token_value_list}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.234096" elapsed="0.000079"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<msg time="2025-03-02T13:20:38.234250" level="INFO">&amp;{cookie_dict} = { token=zfeeBa28jvJcIO5d }</msg>
+<var>token=${value}</var>
+<status status="PASS" start="2025-03-02T13:20:38.234203" elapsed="0.000060"/>
+</variable>
+<status status="PASS" start="2025-03-02T13:20:38.233579" elapsed="0.000702"/>
+</branch>
+<branch type="EXCEPT" assign="${error}">
+<kw name="Log" owner="BuiltIn">
+<arg>${error}</arg>
+<arg>ERROR</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:38.234340" elapsed="0.000008"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<var>token=${NONE}</var>
+<status status="NOT RUN" start="2025-03-02T13:20:38.234363" elapsed="0.000009"/>
+</variable>
+<status status="NOT RUN" start="2025-03-02T13:20:38.234300" elapsed="0.000092"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:38.233563" elapsed="0.000846"/>
+</try>
+<return>
+<value>${cookie_dict}</value>
+<status status="PASS" start="2025-03-02T13:20:38.234427" elapsed="0.000015"/>
+</return>
+<msg time="2025-03-02T13:20:38.234496" level="INFO">${token_cookie} = {'token': 'zfeeBa28jvJcIO5d'}</msg>
+<var>${token_cookie}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:38.233094" elapsed="0.001411"/>
+</kw>
+<kw name="New Web Browser" owner="Selenium">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:38.234803" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:38.234713" elapsed="0.823763"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.060161" elapsed="0.003318"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.063596" elapsed="0.019344"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:39.059928" elapsed="0.023060"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:39.059890" elapsed="0.023124"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:38.234600" elapsed="0.848458"/>
+</kw>
+<kw name="Add Token Cookie" owner="Selenium">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:39.083573" level="INFO">${token_value} = zfeeBa28jvJcIO5d</msg>
+<var>${token_value}</var>
+<arg>${token_cookie}</arg>
+<arg>token</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.083441" elapsed="0.000146"/>
+</kw>
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>name=token</arg>
+<arg>value=${token_value}</arg>
+<arg>domain=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][DOMAIN]</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.083648" elapsed="0.003131"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.086887" elapsed="0.011722"/>
+</kw>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:39.083241" elapsed="0.015452"/>
+</kw>
+<kw name="Navigate To Rooms By URL" owner="Selenium">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:39.099273" level="INFO">${url} = http://tomtebook-pro.local:8080/#/admin/</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/</var>
+<status status="PASS" start="2025-03-02T13:20:39.098988" elapsed="0.000303"/>
+</variable>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:39.099448" level="INFO">Opening url 'http://tomtebook-pro.local:8080/#/admin/'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.099373" elapsed="0.002655"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.102133" elapsed="0.002825"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:39.098871" elapsed="0.006159"/>
+</kw>
+<kw name="Verify Room Header Row Columns" owner="Rooms">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ROOM_HEADER.ROW}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.105445" elapsed="0.211215"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:39.323628" level="INFO">${room_header_text} = Room #
+Type
+Accessible
+Price
+Room details</msg>
+<var>${room_header_text}</var>
+<arg>${ROOM_HEADER.ROW}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.316761" elapsed="0.006882"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:39.323784" level="INFO">${room_header_texts} = ['Room #', 'Type', 'Accessible', 'Price', 'Room details']</msg>
+<var>${room_header_texts}</var>
+<arg>${room_header_text}</arg>
+<arg>separator=\n</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.323703" elapsed="0.000091"/>
+</kw>
+<kw name="Lists Should Be Equal" owner="Collections">
+<arg>${room_header_texts}</arg>
+<arg>${ROOM_COLUMN_NAMES}</arg>
+<doc>Fails if given lists are unequal.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.323843" elapsed="0.000073"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:39.105185" elapsed="0.218758"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.324106" elapsed="0.068547"/>
+</kw>
+<tag>admin</tag>
+<tag>ui-api</tag>
+<tag>url-navigation</tag>
+<status status="PASS" start="2025-03-02T13:20:38.223839" elapsed="1.168935"/>
+</test>
+<test id="s1-s2-s1-s2-t4" name="Report URL Navigation Test" line="35">
+<kw name="Post Request To Authentication Endpoint" owner="Authentication">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:39.393665" level="INFO">${url} = http://tomtebook-pro.local:8080/auth/login</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.AUTH}</var>
+<status status="PASS" start="2025-03-02T13:20:39.393374" elapsed="0.000309"/>
+</variable>
+<variable name="&amp;{json}">
+<msg time="2025-03-02T13:20:39.393801" level="INFO">&amp;{json} = { username=admin | password=password }</msg>
+<var>username=${username}</var>
+<var>password=${password}</var>
+<status status="PASS" start="2025-03-02T13:20:39.393716" elapsed="0.000099"/>
+</variable>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:39.402360" level="INFO">POST Request : url=http://tomtebook-pro.local:8080/auth/login 
+ path_url=/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password"}' 
+ </msg>
+<msg time="2025-03-02T13:20:39.402393" level="INFO">POST Response : url=http://tomtebook-pro.local:8080/auth/login 
+ status=200, reason= 
+ headers={'Set-Cookie': 'token=XTQ2G6lNnh0KNiVM; Path=/', 'Date': 'Sun, 02 Mar 2025 19:20:39 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:39.402436" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.393891" elapsed="0.008554"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:39.402478" elapsed="0.000026"/>
+</return>
+<msg time="2025-03-02T13:20:39.402553" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>&amp;{ADMIN_CREDENTIALS}</arg>
+<status status="PASS" start="2025-03-02T13:20:39.393226" elapsed="0.009335"/>
+</kw>
+<kw name="Get Token Cookie From Response" owner="Authentication">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:39.403172" level="INFO">${cookie_string} = token=XTQ2G6lNnh0KNiVM; Path=/</msg>
+<var>${cookie_string}</var>
+<arg>${response.headers}</arg>
+<arg>Set-Cookie</arg>
+<arg>token=${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.402865" elapsed="0.000321"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${cookie_string}</arg>
+<arg>token</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.403313" elapsed="0.000076"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:39.403500" level="INFO">${token_path_list} = ['token=XTQ2G6lNnh0KNiVM', ' Path=/']</msg>
+<var>${token_path_list}</var>
+<arg>${cookie_string}</arg>
+<arg>separator=;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.403436" elapsed="0.000072"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:39.403590" level="INFO">${token_string} = token=XTQ2G6lNnh0KNiVM</msg>
+<var>${token_string}</var>
+<arg>${token_path_list}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.403545" elapsed="0.000052"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:39.403726" level="INFO">${token_value_list} = ['token', 'XTQ2G6lNnh0KNiVM']</msg>
+<var>${token_value_list}</var>
+<arg>${token_string}</arg>
+<arg>separator==</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.403676" elapsed="0.000058"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:39.403812" level="INFO">${value} = XTQ2G6lNnh0KNiVM</msg>
+<var>${value}</var>
+<arg>${token_value_list}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.403771" elapsed="0.000051"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<msg time="2025-03-02T13:20:39.403899" level="INFO">&amp;{cookie_dict} = { token=XTQ2G6lNnh0KNiVM }</msg>
+<var>token=${value}</var>
+<status status="PASS" start="2025-03-02T13:20:39.403841" elapsed="0.000069"/>
+</variable>
+<status status="PASS" start="2025-03-02T13:20:39.403247" elapsed="0.000680"/>
+</branch>
+<branch type="EXCEPT" assign="${error}">
+<kw name="Log" owner="BuiltIn">
+<arg>${error}</arg>
+<arg>ERROR</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:39.403983" elapsed="0.000009"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<var>token=${NONE}</var>
+<status status="NOT RUN" start="2025-03-02T13:20:39.404007" elapsed="0.000009"/>
+</variable>
+<status status="NOT RUN" start="2025-03-02T13:20:39.403944" elapsed="0.000084"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:39.403218" elapsed="0.000822"/>
+</try>
+<return>
+<value>${cookie_dict}</value>
+<status status="PASS" start="2025-03-02T13:20:39.404050" elapsed="0.000010"/>
+</return>
+<msg time="2025-03-02T13:20:39.404098" level="INFO">${token_cookie} = {'token': 'XTQ2G6lNnh0KNiVM'}</msg>
+<var>${token_cookie}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:39.402721" elapsed="0.001385"/>
+</kw>
+<kw name="New Web Browser" owner="Selenium">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:39.404493" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:39.404403" elapsed="0.854881"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.259749" elapsed="0.005077"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.264936" elapsed="0.017396"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:40.259447" elapsed="0.022931"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:40.259421" elapsed="0.022982"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:39.404198" elapsed="0.878257"/>
+</kw>
+<kw name="Add Token Cookie" owner="Selenium">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:40.282913" level="INFO">${token_value} = XTQ2G6lNnh0KNiVM</msg>
+<var>${token_value}</var>
+<arg>${token_cookie}</arg>
+<arg>token</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.282792" elapsed="0.000133"/>
+</kw>
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>name=token</arg>
+<arg>value=${token_value}</arg>
+<arg>domain=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][DOMAIN]</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.282980" elapsed="0.001353"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.284403" elapsed="0.013463"/>
+</kw>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:40.282617" elapsed="0.015318"/>
+</kw>
+<kw name="Navigate To Reports By URL" owner="Selenium">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:40.298620" level="INFO">${url} = http://tomtebook-pro.local:8080/#/admin/report</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.REPORT}</var>
+<status status="PASS" start="2025-03-02T13:20:40.298208" elapsed="0.000428"/>
+</variable>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:40.298780" level="INFO">Opening url 'http://tomtebook-pro.local:8080/#/admin/report'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.298712" elapsed="0.002582"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.301413" elapsed="0.001781"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:40.298107" elapsed="0.005138"/>
+</kw>
+<kw name="Wait For Report Calendar To Be Visible" owner="Report">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${RBC_CALENDAR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.303565" elapsed="0.210781"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:40.303355" elapsed="0.211048"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.514564" elapsed="0.066616"/>
+</kw>
+<tag>admin</tag>
+<tag>ui-api</tag>
+<tag>url-navigation</tag>
+<status status="PASS" start="2025-03-02T13:20:39.392965" elapsed="1.188314"/>
+</test>
+<test id="s1-s2-s1-s2-t5" name="Branding URL Navigation Test" line="44">
+<kw name="Post Request To Authentication Endpoint" owner="Authentication">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:40.582070" level="INFO">${url} = http://tomtebook-pro.local:8080/auth/login</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.AUTH}</var>
+<status status="PASS" start="2025-03-02T13:20:40.581830" elapsed="0.000254"/>
+</variable>
+<variable name="&amp;{json}">
+<msg time="2025-03-02T13:20:40.582165" level="INFO">&amp;{json} = { username=admin | password=password }</msg>
+<var>username=${username}</var>
+<var>password=${password}</var>
+<status status="PASS" start="2025-03-02T13:20:40.582106" elapsed="0.000069"/>
+</variable>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:40.590424" level="INFO">POST Request : url=http://tomtebook-pro.local:8080/auth/login 
+ path_url=/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password"}' 
+ </msg>
+<msg time="2025-03-02T13:20:40.590458" level="INFO">POST Response : url=http://tomtebook-pro.local:8080/auth/login 
+ status=200, reason= 
+ headers={'Set-Cookie': 'token=NtpTgqTT6uW4tDHV; Path=/', 'Date': 'Sun, 02 Mar 2025 19:20:40 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:40.590505" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.582232" elapsed="0.008283"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:40.590549" elapsed="0.000027"/>
+</return>
+<msg time="2025-03-02T13:20:40.590629" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>&amp;{ADMIN_CREDENTIALS}</arg>
+<status status="PASS" start="2025-03-02T13:20:40.581727" elapsed="0.008911"/>
+</kw>
+<kw name="Get Token Cookie From Response" owner="Authentication">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:40.591400" level="INFO">${cookie_string} = token=NtpTgqTT6uW4tDHV; Path=/</msg>
+<var>${cookie_string}</var>
+<arg>${response.headers}</arg>
+<arg>Set-Cookie</arg>
+<arg>token=${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.591039" elapsed="0.000377"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${cookie_string}</arg>
+<arg>token</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.591548" elapsed="0.000088"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:40.591754" level="INFO">${token_path_list} = ['token=NtpTgqTT6uW4tDHV', ' Path=/']</msg>
+<var>${token_path_list}</var>
+<arg>${cookie_string}</arg>
+<arg>separator=;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.591687" elapsed="0.000080"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:40.591884" level="INFO">${token_string} = token=NtpTgqTT6uW4tDHV</msg>
+<var>${token_string}</var>
+<arg>${token_path_list}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.591816" elapsed="0.000078"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:40.591996" level="INFO">${token_value_list} = ['token', 'NtpTgqTT6uW4tDHV']</msg>
+<var>${token_value_list}</var>
+<arg>${token_string}</arg>
+<arg>separator==</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.591934" elapsed="0.000070"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:40.592083" level="INFO">${value} = NtpTgqTT6uW4tDHV</msg>
+<var>${value}</var>
+<arg>${token_value_list}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.592039" elapsed="0.000052"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<msg time="2025-03-02T13:20:40.592673" level="INFO">&amp;{cookie_dict} = { token=NtpTgqTT6uW4tDHV }</msg>
+<var>token=${value}</var>
+<status status="PASS" start="2025-03-02T13:20:40.592110" elapsed="0.000581"/>
+</variable>
+<status status="PASS" start="2025-03-02T13:20:40.591476" elapsed="0.001239"/>
+</branch>
+<branch type="EXCEPT" assign="${error}">
+<kw name="Log" owner="BuiltIn">
+<arg>${error}</arg>
+<arg>ERROR</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:40.592785" elapsed="0.000011"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<var>token=${NONE}</var>
+<status status="NOT RUN" start="2025-03-02T13:20:40.592815" elapsed="0.000011"/>
+</variable>
+<status status="NOT RUN" start="2025-03-02T13:20:40.592737" elapsed="0.000101"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:40.591453" elapsed="0.001399"/>
+</try>
+<return>
+<value>${cookie_dict}</value>
+<status status="PASS" start="2025-03-02T13:20:40.592863" elapsed="0.000013"/>
+</return>
+<msg time="2025-03-02T13:20:40.592927" level="INFO">${token_cookie} = {'token': 'NtpTgqTT6uW4tDHV'}</msg>
+<var>${token_cookie}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:40.590874" elapsed="0.002066"/>
+</kw>
+<kw name="New Web Browser" owner="Selenium">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:40.593588" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:40.593444" elapsed="0.907430"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.501599" elapsed="0.017240"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.518963" elapsed="0.016719"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:41.501166" elapsed="0.034572"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:41.501127" elapsed="0.034638"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:40.593068" elapsed="0.942756"/>
+</kw>
+<kw name="Add Token Cookie" owner="Selenium">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:41.536423" level="INFO">${token_value} = NtpTgqTT6uW4tDHV</msg>
+<var>${token_value}</var>
+<arg>${token_cookie}</arg>
+<arg>token</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.536283" elapsed="0.000154"/>
+</kw>
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>name=token</arg>
+<arg>value=${token_value}</arg>
+<arg>domain=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][DOMAIN]</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.536501" elapsed="0.002098"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.538696" elapsed="0.014005"/>
+</kw>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:41.536073" elapsed="0.016692"/>
+</kw>
+<kw name="Navigate To Branding By URL" owner="Selenium">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:41.553492" level="INFO">${url} = http://tomtebook-pro.local:8080/#/admin/branding</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.BRANDING}</var>
+<status status="PASS" start="2025-03-02T13:20:41.553065" elapsed="0.000446"/>
+</variable>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:41.553676" level="INFO">Opening url 'http://tomtebook-pro.local:8080/#/admin/branding'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.553598" elapsed="0.003227"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.556937" elapsed="0.004188"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:41.552928" elapsed="0.008260"/>
+</kw>
+<kw name="Wait For Branding Form To Be Visible" owner="Branding">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BRANDING_FORM}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.561467" elapsed="0.222682"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:41.561331" elapsed="0.222915"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.784523" elapsed="0.072136"/>
+</kw>
+<tag>admin</tag>
+<tag>ui-api</tag>
+<tag>url-navigation</tag>
+<status status="PASS" start="2025-03-02T13:20:40.581466" elapsed="1.275300"/>
+</test>
+<test id="s1-s2-s1-s2-t6" name="Message URL Navigation Test" line="53">
+<kw name="Post Request To Authentication Endpoint" owner="Authentication">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:41.857608" level="INFO">${url} = http://tomtebook-pro.local:8080/auth/login</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_REST_EXT.AUTH}</var>
+<status status="PASS" start="2025-03-02T13:20:41.857335" elapsed="0.000290"/>
+</variable>
+<variable name="&amp;{json}">
+<msg time="2025-03-02T13:20:41.857735" level="INFO">&amp;{json} = { username=admin | password=password }</msg>
+<var>username=${username}</var>
+<var>password=${password}</var>
+<status status="PASS" start="2025-03-02T13:20:41.857655" elapsed="0.000093"/>
+</variable>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-02T13:20:41.868123" level="INFO">POST Request : url=http://tomtebook-pro.local:8080/auth/login 
+ path_url=/auth/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password"}' 
+ </msg>
+<msg time="2025-03-02T13:20:41.868163" level="INFO">POST Response : url=http://tomtebook-pro.local:8080/auth/login 
+ status=200, reason= 
+ headers={'Set-Cookie': 'token=fILC7sgz99YrMHjp; Path=/', 'Date': 'Sun, 02 Mar 2025 19:20:41 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive, keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-03-02T13:20:41.868217" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>json=${json}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.857861" elapsed="0.010370"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-02T13:20:41.868276" elapsed="0.000034"/>
+</return>
+<msg time="2025-03-02T13:20:41.868378" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>&amp;{ADMIN_CREDENTIALS}</arg>
+<status status="PASS" start="2025-03-02T13:20:41.857205" elapsed="0.011185"/>
+</kw>
+<kw name="Get Token Cookie From Response" owner="Authentication">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:41.869021" level="INFO">${cookie_string} = token=fILC7sgz99YrMHjp; Path=/</msg>
+<var>${cookie_string}</var>
+<arg>${response.headers}</arg>
+<arg>Set-Cookie</arg>
+<arg>token=${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.868715" elapsed="0.000320"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${cookie_string}</arg>
+<arg>token</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.869151" elapsed="0.000070"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:41.870102" level="INFO">${token_path_list} = ['token=fILC7sgz99YrMHjp', ' Path=/']</msg>
+<var>${token_path_list}</var>
+<arg>${cookie_string}</arg>
+<arg>separator=;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.869276" elapsed="0.000841"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:41.870254" level="INFO">${token_string} = token=fILC7sgz99YrMHjp</msg>
+<var>${token_string}</var>
+<arg>${token_path_list}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.870176" elapsed="0.000090"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2025-03-02T13:20:41.870389" level="INFO">${token_value_list} = ['token', 'fILC7sgz99YrMHjp']</msg>
+<var>${token_value_list}</var>
+<arg>${token_string}</arg>
+<arg>separator==</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.870319" elapsed="0.000083"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<msg time="2025-03-02T13:20:41.870518" level="INFO">${value} = fILC7sgz99YrMHjp</msg>
+<var>${value}</var>
+<arg>${token_value_list}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.870454" elapsed="0.000075"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<msg time="2025-03-02T13:20:41.870617" level="INFO">&amp;{cookie_dict} = { token=fILC7sgz99YrMHjp }</msg>
+<var>token=${value}</var>
+<status status="PASS" start="2025-03-02T13:20:41.870553" elapsed="0.000079"/>
+</variable>
+<status status="PASS" start="2025-03-02T13:20:41.869088" elapsed="0.001565"/>
+</branch>
+<branch type="EXCEPT" assign="${error}">
+<kw name="Log" owner="BuiltIn">
+<arg>${error}</arg>
+<arg>ERROR</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:41.870737" elapsed="0.000012"/>
+</kw>
+<variable name="&amp;{cookie_dict}">
+<var>token=${NONE}</var>
+<status status="NOT RUN" start="2025-03-02T13:20:41.870770" elapsed="0.000018"/>
+</variable>
+<status status="NOT RUN" start="2025-03-02T13:20:41.870678" elapsed="0.000125"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:41.869067" elapsed="0.001754"/>
+</try>
+<return>
+<value>${cookie_dict}</value>
+<status status="PASS" start="2025-03-02T13:20:41.870836" elapsed="0.000015"/>
+</return>
+<msg time="2025-03-02T13:20:41.870904" level="INFO">${token_cookie} = {'token': 'fILC7sgz99YrMHjp'}</msg>
+<var>${token_cookie}</var>
+<arg>${response}</arg>
+<status status="PASS" start="2025-03-02T13:20:41.868574" elapsed="0.002341"/>
+</kw>
+<kw name="New Web Browser" owner="Selenium">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:41.871279" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:41.871158" elapsed="0.881939"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.754278" elapsed="0.002306"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.756663" elapsed="0.024964"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:42.753330" elapsed="0.028345"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:42.753305" elapsed="0.028394"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:41.871032" elapsed="0.910720"/>
+</kw>
+<kw name="Add Token Cookie" owner="Selenium">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-02T13:20:42.782203" level="INFO">${token_value} = fILC7sgz99YrMHjp</msg>
+<var>${token_value}</var>
+<arg>${token_cookie}</arg>
+<arg>token</arg>
+<arg>${NONE}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.782084" elapsed="0.000132"/>
+</kw>
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>name=token</arg>
+<arg>value=${token_value}</arg>
+<arg>domain=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][DOMAIN]</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.782268" elapsed="0.001531"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.783886" elapsed="0.014729"/>
+</kw>
+<arg>${token_cookie}</arg>
+<status status="PASS" start="2025-03-02T13:20:42.781908" elapsed="0.016773"/>
+</kw>
+<kw name="Navigate To Messages By URL" owner="Selenium">
+<variable name="${url}">
+<msg time="2025-03-02T13:20:42.799354" level="INFO">${url} = http://tomtebook-pro.local:8080/#/admin/messages</msg>
+<var>${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]/${RB_URL_EXT.ADMIN}/${RB_URL_EXT.MESSAGES}</var>
+<status status="PASS" start="2025-03-02T13:20:42.798947" elapsed="0.000424"/>
+</variable>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:42.799526" level="INFO">Opening url 'http://tomtebook-pro.local:8080/#/admin/messages'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.799453" elapsed="0.002905"/>
+</kw>
+<kw name="Wait Until Location Is" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Waits until the current URL is ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.802503" elapsed="0.003299"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:42.798845" elapsed="0.007058"/>
+</kw>
+<kw name="Wait For Messages Container To Be Visible" owner="Messages">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${MESSAGES_CONTAINER}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:42.806162" elapsed="0.225828"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:42.806032" elapsed="0.226106"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:43.032428" elapsed="0.072108"/>
+</kw>
+<tag>admin</tag>
+<tag>ui-api</tag>
+<tag>url-navigation</tag>
+<status status="PASS" start="2025-03-02T13:20:41.856943" elapsed="1.247690"/>
+</test>
+<status status="PASS" start="2025-03-02T13:20:35.951517" elapsed="7.153334"/>
+</suite>
+<status status="PASS" start="2025-03-02T13:20:34.140695" elapsed="8.964424"/>
+</suite>
+<suite id="s1-s2-s2" name="CustomerTests" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI/CustomerTests">
+<suite id="s1-s2-s2-s1" name="ContactMessageErrorsTest" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI/CustomerTests/ContactMessageErrorsTest.robot">
+<test id="s1-s2-s2-s1-t1" name="Verify Error Messages Are Correct" line="10">
+<kw name="Test Template">
+<kw name="New Web Browser" owner="Selenium" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:43.111328" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:43.111199" elapsed="0.907266"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.019603" elapsed="0.004416"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.024141" elapsed="0.023830"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.019093" elapsed="0.028923"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.019064" elapsed="0.028983"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:43.111060" elapsed="0.937033"/>
+</kw>
+<group name="Enter Test Contact Message Data">
+<kw name="Enter Name Into Contact Form" owner="Contact">
+<variable name="${name_input}">
+<msg time="2025-03-02T13:20:44.048439" level="INFO">${name_input} = css=input[id="name"]</msg>
+<var>css=input[id="name"]</var>
+<status status="PASS" start="2025-03-02T13:20:44.048398" elapsed="0.000053"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.048512" elapsed="0.217976"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.266816" level="INFO">Typing text '' into text field 'css=input[id="name"]'.</msg>
+<arg>${name_input}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.266636" elapsed="0.034728"/>
+</kw>
+<arg>${name}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.048259" elapsed="0.253175"/>
+</kw>
+<kw name="Enter Email Into Contact Form" owner="Contact">
+<variable name="${email_input}">
+<msg time="2025-03-02T13:20:44.301697" level="INFO">${email_input} = css=input[id="email"]</msg>
+<var>css=input[id="email"]</var>
+<status status="PASS" start="2025-03-02T13:20:44.301657" elapsed="0.000053"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${email_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.301771" elapsed="0.006633"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.308606" level="INFO">Typing text 'c@' into text field 'css=input[id="email"]'.</msg>
+<arg>${email_input}</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.308494" elapsed="0.066892"/>
+</kw>
+<arg>${email}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.301538" elapsed="0.073914"/>
+</kw>
+<kw name="Enter Phone Into Contact Form" owner="Contact">
+<variable name="${phone_input}">
+<msg time="2025-03-02T13:20:44.375722" level="INFO">${phone_input} = css=input[id="phone"]</msg>
+<var>css=input[id="phone"]</var>
+<status status="PASS" start="2025-03-02T13:20:44.375684" elapsed="0.000054"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${phone_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.375798" elapsed="0.005922"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.381892" level="INFO">Typing text '           ' into text field 'css=input[id="phone"]'.</msg>
+<arg>${phone_input}</arg>
+<arg>${phone}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.381793" elapsed="0.022166"/>
+</kw>
+<arg>${phone}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.375556" elapsed="0.028467"/>
+</kw>
+<kw name="Enter Subject Into Contact Form" owner="Contact">
+<variable name="${subject_input}">
+<msg time="2025-03-02T13:20:44.404243" level="INFO">${subject_input} = css=input[id="subject"]</msg>
+<var>css=input[id="subject"]</var>
+<status status="PASS" start="2025-03-02T13:20:44.404206" elapsed="0.000048"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${subject_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.404304" elapsed="0.009919"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.414427" level="INFO">Typing text '' into text field 'css=input[id="subject"]'.</msg>
+<arg>${subject_input}</arg>
+<arg>${subject}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.414315" elapsed="0.022151"/>
+</kw>
+<arg>${subject}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.404107" elapsed="0.032407"/>
+</kw>
+<kw name="Enter Message Into Contact Form" owner="Contact">
+<variable name="${message_textarea}">
+<msg time="2025-03-02T13:20:44.436721" level="INFO">${message_textarea} = css=textarea[id="description"]</msg>
+<var>css=textarea[id="description"]</var>
+<status status="PASS" start="2025-03-02T13:20:44.436691" elapsed="0.000041"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${message_textarea}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.436782" elapsed="0.005176"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.442140" level="INFO">Typing text ' ' into text field 'css=textarea[id="description"]'.</msg>
+<arg>${message_textarea}</arg>
+<arg>${message}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.442034" elapsed="0.018540"/>
+</kw>
+<arg>${message}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.436598" elapsed="0.024030"/>
+</kw>
+<kw name="Click Submit Button On The Contact Form" owner="Contact">
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>css=button[id="submitContact"]</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.460825" elapsed="0.006821"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.467820" level="INFO">Clicking button 'Submit'.</msg>
+<arg>Submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.467760" elapsed="0.024634"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.460707" elapsed="0.031751"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.048152" elapsed="0.444330"/>
+</group>
+<group name="Verify Error Messages">
+<kw name="Verify Blank Name Alerts" owner="Contact">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.492798" elapsed="0.214663"/>
+</kw>
+<if>
+<branch type="IF" condition="$name is None or '${name}' == '${EMPTY}' or $name.isspace()">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.721186" level="INFO">Element 'css=div.alert-danger' contains text 'Name may not be blank'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.NAME_BLANK}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.708387" elapsed="0.012860"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.707644" elapsed="0.013649"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.NAME_BLANK}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.721431" elapsed="0.000021"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.721327" elapsed="0.000152"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.707606" elapsed="0.013894"/>
+</if>
+<arg>${name}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.492643" elapsed="0.228896"/>
+</kw>
+<kw name="Verify Blank Email Alerts" owner="Contact">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.721860" elapsed="0.002960"/>
+</kw>
+<if>
+<branch type="IF" condition="'${email}' == '${EMPTY}' or $email.isspace()">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.EMAIL_BLANK}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.725246" elapsed="0.000017"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.724877" elapsed="0.000412"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.732304" level="INFO">Element 'css=div.alert-danger' does not contain text 'Email may not be blank'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.EMAIL_BLANK}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.725370" elapsed="0.006971"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.725310" elapsed="0.007058"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.724864" elapsed="0.007533"/>
+</if>
+<arg>${email}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.721672" elapsed="0.010756"/>
+</kw>
+<kw name="Verify Well Formed Email Alerts" owner="Contact">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.732678" elapsed="0.002577"/>
+</kw>
+<if>
+<branch type="IF" condition="${{ re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', $email) }}">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.EMAIL_FORM}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.735694" elapsed="0.000015"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.735300" elapsed="0.000431"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.741464" level="INFO">Element 'css=div.alert-danger' contains text 'must be a well-formed email address'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.EMAIL_FORM}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.735793" elapsed="0.005702"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.735749" elapsed="0.005769"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.735290" elapsed="0.006245"/>
+</if>
+<arg>${email}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.732529" elapsed="0.009030"/>
+</kw>
+<kw name="Verify Blank Phone Alerts" owner="Contact">
+<if>
+<branch type="IF" condition="'${phone}' == '${EMPTY}' or $phone.isspace()">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.747226" level="INFO">Element 'css=div.alert-danger' contains text 'Phone may not be blank'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.PHONE_BLANK}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.741998" elapsed="0.005259"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.741752" elapsed="0.005531"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.PHONE_BLANK}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.747355" elapsed="0.000013"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.747301" elapsed="0.000084"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.741743" elapsed="0.005655"/>
+</if>
+<arg>${phone}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.741645" elapsed="0.005775"/>
+</kw>
+<kw name="Verify Phone Length Alerts" owner="Contact">
+<if>
+<branch type="IF" condition="len($phone) &lt; 11 or len($phone) &gt; 20">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.PHONE_LENGTH}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.747702" elapsed="0.000013"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.747598" elapsed="0.000136"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.753569" level="INFO">Element 'css=div.alert-danger' does not contain text 'Phone must be between 11 and 21 characters.'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.PHONE_LENGTH}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.747788" elapsed="0.005814"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.747749" elapsed="0.005877"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.747590" elapsed="0.006053"/>
+</if>
+<arg>${phone}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.747499" elapsed="0.006167"/>
+</kw>
+<kw name="Verify Blank Subject Alerts" owner="Contact">
+<if>
+<branch type="IF" condition="'${subject}' == '${EMPTY}' or $subject.isspace()">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.759081" level="INFO">Element 'css=div.alert-danger' contains text 'Subject may not be blank'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.SUBJECT_BLANK}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.754079" elapsed="0.005033"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.753845" elapsed="0.005291"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.SUBJECT_BLANK}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.759238" elapsed="0.000012"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.759185" elapsed="0.000080"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.753837" elapsed="0.005440"/>
+</if>
+<arg>${subject}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.753747" elapsed="0.005551"/>
+</kw>
+<kw name="Verify Subject Length Alerts" owner="Contact">
+<if>
+<branch type="IF" condition="len($subject) &lt; 5 or len($subject) &gt; 100">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.764403" level="INFO">Element 'css=div.alert-danger' contains text 'Subject must be between 5 and 100 characters.'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.SUBJECT_LENGTH}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.759557" elapsed="0.004876"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.759463" elapsed="0.004994"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.SUBJECT_LENGTH}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.764523" elapsed="0.000011"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.764474" elapsed="0.000076"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.759456" elapsed="0.005106"/>
+</if>
+<arg>${subject}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.759371" elapsed="0.005213"/>
+</kw>
+<kw name="Verify Blank Message Alerts" owner="Contact">
+<if>
+<branch type="IF" condition="'${message}' == '${EMPTY}' or $message.isspace()">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.770569" level="INFO">Element 'css=div.alert-danger' contains text 'Message may not be blank'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.MESSAGE_BLANK}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.765183" elapsed="0.005419"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.764932" elapsed="0.005697"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.MESSAGE_BLANK}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.770702" elapsed="0.000012"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.770648" elapsed="0.000082"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.764922" elapsed="0.005819"/>
+</if>
+<arg>${message}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.764717" elapsed="0.006045"/>
+</kw>
+<kw name="Verify Message Length Alerts" owner="Contact">
+<if>
+<branch type="IF" condition="len($message) &lt; 20 or len($message) &gt; 2000">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.775918" level="INFO">Element 'css=div.alert-danger' contains text 'Message must be between 20 and 2000 characters.'.</msg>
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.MESSAGE_LENGTH}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.771024" elapsed="0.004939"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.770928" elapsed="0.005068"/>
+</branch>
+<branch type="ELSE">
+<kw name="Element Should Not Contain" owner="SeleniumLibrary">
+<arg>${ALERT_BOX}</arg>
+<arg>${CONTACT_FORM_ALERTS.MESSAGE_LENGTH}</arg>
+<doc>Verifies that element ``locator`` does not contain text ``expected``.</doc>
+<status status="NOT RUN" start="2025-03-02T13:20:44.776085" elapsed="0.000014"/>
+</kw>
+<status status="NOT RUN" start="2025-03-02T13:20:44.776017" elapsed="0.000099"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:44.770921" elapsed="0.005208"/>
+</if>
+<arg>${message}</arg>
+<status status="PASS" start="2025-03-02T13:20:44.770835" elapsed="0.005319"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:44.492534" elapsed="0.283636"/>
+</group>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.776253" elapsed="0.070408"/>
+</kw>
+<arg>${EMPTY}</arg>
+<arg>c@</arg>
+<arg>${SPACE*11}</arg>
+<arg>${EMPTY}</arg>
+<arg>${SPACE}</arg>
+<status status="PASS" start="2025-03-02T13:20:43.110388" elapsed="1.736354"/>
+</kw>
+<tag>contact-message</tag>
+<tag>customer</tag>
+<tag>error-messages</tag>
+<tag>ui-api</tag>
+<status status="PASS" start="2025-03-02T13:20:43.110120" elapsed="1.736751"/>
+</test>
+<doc>Example test file.</doc>
+<status status="PASS" start="2025-03-02T13:20:43.106006" elapsed="1.741035"/>
+</suite>
+<suite id="s1-s2-s2-s2" name="ContactMessageTest" source="/Users/kelbystine/GitHub/building-test-project-tutorial/Tests/UI/CustomerTests/ContactMessageTest.robot">
+<test id="s1-s2-s2-s2-t1" name="Verify Confirmation Message After Submitting Message" line="19">
+<kw name="New Web Browser" owner="Selenium" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:44.849091" level="INFO">Opening browser 'Chrome' to base url 'http://tomtebook-pro.local:8080'.</msg>
+<arg>url=${BOOKING_URL_DATA}[${BOOKING_ENVIRONMENT}][URL]</arg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.848991" elapsed="0.851310"/>
+</kw>
+<if>
+<branch type="IF" condition="${add_banner_cookie}">
+<kw name="Add Cookie" owner="SeleniumLibrary">
+<arg>&amp;{BANNER_COOKIE}</arg>
+<doc>Adds a cookie to your current session.</doc>
+<status status="PASS" start="2025-03-02T13:20:45.700661" elapsed="0.001833"/>
+</kw>
+<kw name="Reload Page" owner="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" start="2025-03-02T13:20:45.702651" elapsed="0.031127"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:45.700480" elapsed="0.033343"/>
+</branch>
+<status status="PASS" start="2025-03-02T13:20:45.700456" elapsed="0.033393"/>
+</if>
+<status status="PASS" start="2025-03-02T13:20:44.848867" elapsed="0.885028"/>
+</kw>
+<kw name="Enter Name Into Contact Form" owner="Contact">
+<variable name="${name_input}">
+<msg time="2025-03-02T13:20:45.734263" level="INFO">${name_input} = css=input[id="name"]</msg>
+<var>css=input[id="name"]</var>
+<status status="PASS" start="2025-03-02T13:20:45.734220" elapsed="0.000055"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:45.734333" elapsed="0.213590"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:45.948198" level="INFO">Typing text 'Bob Builder' into text field 'css=input[id="name"]'.</msg>
+<arg>${name_input}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:45.948071" elapsed="0.074005"/>
+</kw>
+<arg>${MESSAGE_BODY}[name]</arg>
+<status status="PASS" start="2025-03-02T13:20:45.734083" elapsed="0.288056"/>
+</kw>
+<kw name="Enter Email Into Contact Form" owner="Contact">
+<variable name="${email_input}">
+<msg time="2025-03-02T13:20:46.022427" level="INFO">${email_input} = css=input[id="email"]</msg>
+<var>css=input[id="email"]</var>
+<status status="PASS" start="2025-03-02T13:20:46.022390" elapsed="0.000049"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${email_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.022498" elapsed="0.006540"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.029278" level="INFO">Typing text 'bob@builder.com' into text field 'css=input[id="email"]'.</msg>
+<arg>${email_input}</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.029174" elapsed="0.022339"/>
+</kw>
+<arg>${MESSAGE_BODY}[email]</arg>
+<status status="PASS" start="2025-03-02T13:20:46.022270" elapsed="0.029305"/>
+</kw>
+<kw name="Enter Phone Into Contact Form" owner="Contact">
+<variable name="${phone_input}">
+<msg time="2025-03-02T13:20:46.051864" level="INFO">${phone_input} = css=input[id="phone"]</msg>
+<var>css=input[id="phone"]</var>
+<status status="PASS" start="2025-03-02T13:20:46.051832" elapsed="0.000050"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${phone_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.051943" elapsed="0.004977"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.057064" level="INFO">Typing text '05552312222' into text field 'css=input[id="phone"]'.</msg>
+<arg>${phone_input}</arg>
+<arg>${phone}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.056981" elapsed="0.026074"/>
+</kw>
+<arg>${MESSAGE_BODY}[phone]</arg>
+<status status="PASS" start="2025-03-02T13:20:46.051705" elapsed="0.031409"/>
+</kw>
+<kw name="Enter Subject Into Contact Form" owner="Contact">
+<variable name="${subject_input}">
+<msg time="2025-03-02T13:20:46.083394" level="INFO">${subject_input} = css=input[id="subject"]</msg>
+<var>css=input[id="subject"]</var>
+<status status="PASS" start="2025-03-02T13:20:46.083363" elapsed="0.000042"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${subject_input}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.083457" elapsed="0.005732"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.089354" level="INFO">Typing text 'Building things' into text field 'css=input[id="subject"]'.</msg>
+<arg>${subject_input}</arg>
+<arg>${subject}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.089259" elapsed="0.025997"/>
+</kw>
+<arg>${MESSAGE_BODY}[subject]</arg>
+<status status="PASS" start="2025-03-02T13:20:46.083244" elapsed="0.032072"/>
+</kw>
+<kw name="Enter Message Into Contact Form" owner="Contact">
+<variable name="${message_textarea}">
+<msg time="2025-03-02T13:20:46.115604" level="INFO">${message_textarea} = css=textarea[id="description"]</msg>
+<var>css=textarea[id="description"]</var>
+<status status="PASS" start="2025-03-02T13:20:46.115572" elapsed="0.000044"/>
+</variable>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${message_textarea}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.115668" elapsed="0.005119"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.120937" level="INFO">Typing text 'I am a very lengthy sentence and would love to know more about building hotels.' into text field 'css=textarea[id="description"]'.</msg>
+<arg>${message_textarea}</arg>
+<arg>${message}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.120851" elapsed="0.031942"/>
+</kw>
+<arg>${MESSAGE_BODY}[description]</arg>
+<status status="PASS" start="2025-03-02T13:20:46.115452" elapsed="0.037398"/>
+</kw>
+<kw name="Click Submit Button On The Contact Form" owner="Contact">
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>css=button[id="submitContact"]</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.153110" elapsed="0.008018"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.161309" level="INFO">Clicking button 'Submit'.</msg>
+<arg>Submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.161224" elapsed="0.022942"/>
+</kw>
+<status status="PASS" start="2025-03-02T13:20:46.152974" elapsed="0.031248"/>
+</kw>
+<kw name="Verify Confirmation Message After Submitting Message" owner="Contact">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Thanks for getting in touch ${name}!</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.184512" elapsed="0.209076"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.401002" level="INFO">Element 'css=div.row.contact &gt; div:nth-child(2) &gt; div &gt; p:nth-child(2)' contains text 'We'll get back to you about'.</msg>
+<arg>${CONFIRMATION_MESSAGE}[HEADER]</arg>
+<arg>${CONFIRMATION_MESSAGE}[HEADER_TEXT]</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.393692" elapsed="0.007345"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.406685" level="INFO">Element 'css=div.row.contact &gt; div:nth-child(2) &gt; div &gt; p:nth-child(3)' contains text 'Building things'.</msg>
+<arg>${CONFIRMATION_MESSAGE}[SUBJECT]</arg>
+<arg>${subject}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.401095" elapsed="0.005637"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-02T13:20:46.412559" level="INFO">Element 'css=div.row.contact &gt; div:nth-child(2) &gt; div &gt; p:nth-child(4)' contains text 'as soon as possible.'.</msg>
+<arg>${CONFIRMATION_MESSAGE}[ASAP]</arg>
+<arg>${CONFIRMATION_MESSAGE}[ASAP_TEXT]</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.406810" elapsed="0.005783"/>
+</kw>
+<arg>${MESSAGE_BODY}[name]</arg>
+<arg>${MESSAGE_BODY}[subject]</arg>
+<status status="PASS" start="2025-03-02T13:20:46.184346" elapsed="0.228283"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-02T13:20:46.412771" elapsed="0.068531"/>
+</kw>
+<tag>contact-message</tag>
+<tag>customer</tag>
+<tag>happy-path</tag>
+<tag>ui-api</tag>
+<status status="PASS" start="2025-03-02T13:20:44.848674" elapsed="1.632742"/>
+</test>
+<doc>Example test file.</doc>
+<status status="PASS" start="2025-03-02T13:20:44.847230" elapsed="1.634381"/>
+</suite>
+<status status="PASS" start="2025-03-02T13:20:43.105288" elapsed="3.376538"/>
+</suite>
+<status status="PASS" start="2025-03-02T13:20:34.140231" elapsed="12.341814"/>
+</suite>
+<status status="PASS" start="2025-03-02T13:20:34.004273" elapsed="12.477983"/>
+</suite>
+<statistics>
+<total>
+<stat pass="11" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="9" fail="0" skip="0">admin</stat>
+<stat pass="4" fail="0" skip="0">contact-message</stat>
+<stat pass="2" fail="0" skip="0">customer</stat>
+<stat pass="1" fail="0" skip="0">error-messages</stat>
+<stat pass="2" fail="0" skip="0">happy-path</stat>
+<stat pass="1" fail="0" skip="0">menu-tour</stat>
+<stat pass="2" fail="0" skip="0">rest-api</stat>
+<stat pass="9" fail="0" skip="0">ui-api</stat>
+<stat pass="6" fail="0" skip="0">url-navigation</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="11" fail="0" skip="0">Tests</stat>
+<stat name="REST" id="s1-s1" pass="2" fail="0" skip="0">Tests.REST</stat>
+<stat name="ContactMessageTest" id="s1-s1-s1" pass="2" fail="0" skip="0">Tests.REST.ContactMessageTest</stat>
+<stat name="UI" id="s1-s2" pass="9" fail="0" skip="0">Tests.UI</stat>
+<stat name="AdminTests" id="s1-s2-s1" pass="7" fail="0" skip="0">Tests.UI.AdminTests</stat>
+<stat name="AdminMenuPermissionsTest" id="s1-s2-s1-s1" pass="1" fail="0" skip="0">Tests.UI.AdminTests.AdminMenuPermissionsTest</stat>
+<stat name="URLNavigationTest" id="s1-s2-s1-s2" pass="6" fail="0" skip="0">Tests.UI.AdminTests.URLNavigationTest</stat>
+<stat name="CustomerTests" id="s1-s2-s2" pass="2" fail="0" skip="0">Tests.UI.CustomerTests</stat>
+<stat name="ContactMessageErrorsTest" id="s1-s2-s2-s1" pass="1" fail="0" skip="0">Tests.UI.CustomerTests.ContactMessageErrorsTest</stat>
+<stat name="ContactMessageTest" id="s1-s2-s2-s2" pass="1" fail="0" skip="0">Tests.UI.CustomerTests.ContactMessageTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

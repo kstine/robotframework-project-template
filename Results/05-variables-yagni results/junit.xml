@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests" tests="11" errors="0" failures="0" skipped="0" time="12.478" timestamp="2025-03-02T13:20:34.004273">
+<testsuite name="REST" tests="2" errors="0" failures="0" skipped="0" time="0.130" timestamp="2025-03-02T13:20:34.010603">
+<testsuite name="ContactMessageTest" tests="2" errors="0" failures="0" skipped="0" time="0.129" timestamp="2025-03-02T13:20:34.010916">
+<testcase classname="Tests.REST.ContactMessageTest" name="Verify Message Endpoint Returns OK" time="0.018">
+</testcase>
+<testcase classname="Tests.REST.ContactMessageTest" name="Verify Admin Can Read Message" time="0.062">
+</testcase>
+</testsuite>
+</testsuite>
+<testsuite name="UI" tests="9" errors="0" failures="0" skipped="0" time="12.342" timestamp="2025-03-02T13:20:34.140231">
+<testsuite name="AdminTests" tests="7" errors="0" failures="0" skipped="0" time="8.964" timestamp="2025-03-02T13:20:34.140695">
+<testsuite name="AdminMenuPermissionsTest" tests="1" errors="0" failures="0" skipped="0" time="1.810" timestamp="2025-03-02T13:20:34.140991">
+<testcase classname="Tests.UI.AdminTests.AdminMenuPermissionsTest" name="Verify Admin Menu Permissions" time="1.757">
+</testcase>
+<properties>
+<property name="Documentation" value="Example test file."/>
+</properties>
+</testsuite>
+<testsuite name="URLNavigationTest" tests="6" errors="0" failures="0" skipped="0" time="7.153" timestamp="2025-03-02T13:20:35.951517">
+<testcase classname="Tests.UI.AdminTests.URLNavigationTest" name="URL Navigation Test" time="1.060">
+</testcase>
+<testcase classname="Tests.UI.AdminTests.URLNavigationTest" name="Admin URL Navigation Test" time="1.209">
+</testcase>
+<testcase classname="Tests.UI.AdminTests.URLNavigationTest" name="Room URL Navigation Test" time="1.169">
+</testcase>
+<testcase classname="Tests.UI.AdminTests.URLNavigationTest" name="Report URL Navigation Test" time="1.188">
+</testcase>
+<testcase classname="Tests.UI.AdminTests.URLNavigationTest" name="Branding URL Navigation Test" time="1.275">
+</testcase>
+<testcase classname="Tests.UI.AdminTests.URLNavigationTest" name="Message URL Navigation Test" time="1.248">
+</testcase>
+</testsuite>
+</testsuite>
+<testsuite name="CustomerTests" tests="2" errors="0" failures="0" skipped="0" time="3.377" timestamp="2025-03-02T13:20:43.105288">
+<testsuite name="ContactMessageErrorsTest" tests="1" errors="0" failures="0" skipped="0" time="1.741" timestamp="2025-03-02T13:20:43.106006">
+<testcase classname="Tests.UI.CustomerTests.ContactMessageErrorsTest" name="Verify Error Messages Are Correct" time="1.737">
+</testcase>
+<properties>
+<property name="Documentation" value="Example test file."/>
+</properties>
+</testsuite>
+<testsuite name="ContactMessageTest" tests="1" errors="0" failures="0" skipped="0" time="1.634" timestamp="2025-03-02T13:20:44.847230">
+<testcase classname="Tests.UI.CustomerTests.ContactMessageTest" name="Verify Confirmation Message After Submitting Message" time="1.633">
+</testcase>
+<properties>
+<property name="Documentation" value="Example test file."/>
+</properties>
+</testsuite>
+</testsuite>
+</testsuite>
+</testsuite>
