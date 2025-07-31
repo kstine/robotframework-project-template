@@ -36,11 +36,48 @@ readme = "README.md"
 requires-python = ">=3.12,<3.14"
 package-mode = false
 
+[tool.robocop]
+exclude = ["0305","0319","0916", "0930", "0931"]
+configure = [
+    "not-allowed-char-in-name:pattern:[\"+*.|(){}[\\]&!^~?:\\-\\\\]"
+]
+# Bad JQL Characters +-&|!(){}[]^~*?\:
+
+[tool.robotidy]
+overwrite = true
+diff = true
+configure = [
+    "AlignSettingsSection: up_to_column=2",
+    "AlignVariablesSection: up_to_column=2",
+    "DiscardEmptySections: allow_only_comments=True",
+    "AlignTestCasesSection: enabled = True:alignment_type = auto:widths = 0:handle_too_long = ignore_rest:skip_settings = True",
+    "AlignKeywordsSection: enabled = True:alignment_type = auto:widths = 0:handle_too_long = ignore_rest:skip_settings = True",
+    "NormalizeAssignments: equal_sign_type=remove",
+    "NormalizeNewLines: section_lines=2",
+    "NormalizeNewLines: test_case_lines=1",
+    "NormalizeNewLines: keyword_lines=1",
+    "NormalizeNewLines: consecutive_lines=0",
+    "NormalizeNewLines: separate_templated_tests=True",
+    "NormalizeSectionHeaderName: uppercase=False",
+    "NormalizeSeparators",
+    "NormalizeSettingName",
+    "OrderSettingsSection:group_order=documentation,imports,tags,settings",
+    "OrderSettingsSection:imports_order=library,resource,variables",
+    "OrderSettings:test_before=documentation,tags,timeout,setup,template",
+    "OrderSettings:test_after=teardown",
+    "ReplaceRunKeywordIf",
+    "SplitTooLongLine: split_on_every_arg=false",
+    "SplitTooLongLine: align_new_line=True",
+    "SplitTooLongLine: line_length=120"
+]
+
 [tool.poetry.group.test.dependencies]
 robotframework = "^7.2.0"
 robotframework-requests = "^0.9.7"
 robotframework-seleniumlibrary = "^6.7.0"
 robotframework-jsonlibrary = "^0.5"
+
+[tool.poetry.group.framework.dependencies]
 
 [tool.poetry.group.dev.dependencies]
 robotframework-tidy = "^4.16.0"
@@ -51,3 +88,40 @@ robotcode-runner = "^0.108.0"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.common.dependencies]
+lxml = "^5.3.0"
+python-dotenv = "*"
+oracledb = "^2.2.1"
+PyJWT = "2.10.1"
+pyyaml = "^6.0.2"
+robotframework = "==6.1.1"
+robotframework-crypto = "^0.3.0"
+robotframework-databaselibrary = "==1.4.4"
+robotframework-datadriver = "==1.11.2"
+robotframework-jsonlibrary = "^0.5"
+robotframework-requests = "==0.9.7"
+
+[tool.poetry.group.browser.dependencies]
+robotframework-browser = "==18.6.3"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "*"
+flake8 = "*"
+pylint = "*"
+robotcode-runner = "*"
+robotframework-debug = "*"
+robotframework-metrics = "*"
+robotframework-robocop = "^5.4.0"
+robotframework-tidy = "^4.14.0"
+
+[tool.poetry.group.script.dependencies]
+python-on-whales = "^0.72.0"
+
+[tool.poetry.group.selenium.dependencies]
+robotframework-seleniumlibrary = "==6.3.0"
+
+[tool.poetry.group.test.dependencies]
+openpyxl = "^3.1.5"
+robotframework-excellib-xlsm = "^2.0.3"  # updated fork of robotframework-excellib
+robotframework-imaplibrary2 = "^0.4.10"
