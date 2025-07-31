@@ -1,22 +1,25 @@
 # Zephyr: Bad JQL Characters +-&|!(){}[]^~*?\:
 [tool.robocop]
 ignore = [
-    "VAR04"
+    'NAME04',
+    'DEPR02', 
+    'MISC09',
+    "VAR04",
     "VAR05",
-    "VAR06",
+    "VAR06"
 ]
-exclude = [
-    "0305",
-    "0319",
-    "0916", 
-    "0930", 
-    "0931"
-    ]
+# exclude = [
+#     "0305",
+#     "0319",
+#     "0916", 
+#     "0930", 
+#     "0931"
+#     ]
 configure = [
     "not-allowed-char-in-name.pattern=[\"+*.|(){}[\\]&!^~?:\\-\\\\]"
 ]
 
-[tool.robocop.format]
+[tool.robocop.issue_format]
 diff = true
 overwrite = true
 configure = [
