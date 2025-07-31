@@ -1,3 +1,29 @@
+[tool.robocop.lint]
+ignore = [
+    "VAR05",
+    "VAR06",
+]
+
+[tool.robocop.format]
+diff = true
+overwrite = true
+configure = [
+    "AlignSettingsSection.up_to_column=2",
+    "AlignVariablesSection.up_to_column=3",
+    "DiscardEmptySections.allow_only_comments=True",
+    "NormalizeAssignments.equal_sign_type=remove",
+    "NormalizeNewLines.section_lines=2",
+    "NormalizeNewLines.test_case_lines=1",
+    "NormalizeNewLines.keyword_lines=1",
+    "NormalizeNewLines.consecutive_lines=0",
+    "NormalizeNewLines.separate_templated_tests=True",
+    "NormalizeSectionHeaderName.uppercase=false",
+    "OrderSettingsSection.group_order=documentation,imports,tags,settings",
+    "OrderSettingsSection.new_lines_between_groups=2",
+    "SplitTooLongLine.split_on_every_arg=false",
+    "SplitTooLongLine.line_length=120",
+]
+
 [project]
 name = "robotframework-project-template"
 version = "0.1.0"
