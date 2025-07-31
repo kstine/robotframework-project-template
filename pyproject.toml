@@ -38,7 +38,7 @@ robotframework-metrics = "^3.7.0"
 [tool.poetry.group.framework.dependencies]
 robotcode-runner = "^1.6.0"
 robotframework = "^7.3.2"
-robotframework-datadriver = "^2.1.4"
+robotframework-datadriver = "^1.11.2"
 robotframework-robocop = "^6.5.1"
 
 [tool.poetry.group.script.dependencies]

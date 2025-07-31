@@ -1,25 +1,18 @@
 # Zephyr: Bad JQL Characters +-&|!(){}[]^~*?\:
-[tool.robocop]
+[tool.robocop.lint]
 ignore = [
-    'NAME04',
-    'DEPR02', 
-    'MISC09',
+    "NAME04",
+    "DEPR02",
+    "MISC09",
     "VAR04",
     "VAR05",
-    "VAR06"
+    "VAR06",
 ]
-# exclude = [
-#     "0305",
-#     "0319",
-#     "0916", 
-#     "0930", 
-#     "0931"
-#     ]
 configure = [
     "not-allowed-char-in-name.pattern=[\"+*.|(){}[\\]&!^~?:\\-\\\\]"
 ]
 
-[tool.robocop.issue_format]
+[tool.robocop.format]
 diff = true
 overwrite = true
 configure = [
@@ -43,12 +36,12 @@ configure = [
     "NormalizeNewLines.separate_templated_tests=True",
     "NormalizeNewLines.test_case_lines=1",
     "NormalizeSectionHeaderName.uppercase=false",
-    "NormalizeSeparators",
+    "NormalizeSeparators.enabled=True",
     "OrderSettings.test_before=documentation,tags,timeout,setup,template",
     "OrderSettings.test_after=teardown",
     "OrderSettingsSection.group_order=documentation,imports,tags,settings",
     "OrderSettingsSection.new_lines_between_groups=2",
-    "ReplaceRunKeywordIf",
+    "ReplaceRunKeywordIf.enabled=True",
     "SplitTooLongLine.align_new_line=True",
     "SplitTooLongLine.line_length=120",
     "SplitTooLongLine.split_on_every_arg=false"
