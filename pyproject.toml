@@ -1,28 +1,4 @@
-[tool.robocop.lint]
-ignore = [
-    "VAR05",
-    "VAR06",
-]
 
-[tool.robocop.format]
-diff = true
-overwrite = true
-configure = [
-    "AlignSettingsSection.up_to_column=2",
-    "AlignVariablesSection.up_to_column=3",
-    "DiscardEmptySections.allow_only_comments=True",
-    "NormalizeAssignments.equal_sign_type=remove",
-    "NormalizeNewLines.section_lines=2",
-    "NormalizeNewLines.test_case_lines=1",
-    "NormalizeNewLines.keyword_lines=1",
-    "NormalizeNewLines.consecutive_lines=0",
-    "NormalizeNewLines.separate_templated_tests=True",
-    "NormalizeSectionHeaderName.uppercase=false",
-    "OrderSettingsSection.group_order=documentation,imports,tags,settings",
-    "OrderSettingsSection.new_lines_between_groups=2",
-    "SplitTooLongLine.split_on_every_arg=false",
-    "SplitTooLongLine.line_length=120",
-]
 
 [project]
 name = "robotframework-project-template"
@@ -36,40 +12,7 @@ readme = "README.md"
 requires-python = ">=3.12,<3.14"
 package-mode = false
 
-[tool.robocop]
-exclude = ["0305","0319","0916", "0930", "0931"]
-configure = [
-    "not-allowed-char-in-name:pattern:[\"+*.|(){}[\\]&!^~?:\\-\\\\]"
-]
-# Bad JQL Characters +-&|!(){}[]^~*?\:
 
-[tool.robotidy]
-overwrite = true
-diff = true
-configure = [
-    "AlignSettingsSection: up_to_column=2",
-    "AlignVariablesSection: up_to_column=2",
-    "DiscardEmptySections: allow_only_comments=True",
-    "AlignTestCasesSection: enabled = True:alignment_type = auto:widths = 0:handle_too_long = ignore_rest:skip_settings = True",
-    "AlignKeywordsSection: enabled = True:alignment_type = auto:widths = 0:handle_too_long = ignore_rest:skip_settings = True",
-    "NormalizeAssignments: equal_sign_type=remove",
-    "NormalizeNewLines: section_lines=2",
-    "NormalizeNewLines: test_case_lines=1",
-    "NormalizeNewLines: keyword_lines=1",
-    "NormalizeNewLines: consecutive_lines=0",
-    "NormalizeNewLines: separate_templated_tests=True",
-    "NormalizeSectionHeaderName: uppercase=False",
-    "NormalizeSeparators",
-    "NormalizeSettingName",
-    "OrderSettingsSection:group_order=documentation,imports,tags,settings",
-    "OrderSettingsSection:imports_order=library,resource,variables",
-    "OrderSettings:test_before=documentation,tags,timeout,setup,template",
-    "OrderSettings:test_after=teardown",
-    "ReplaceRunKeywordIf",
-    "SplitTooLongLine: split_on_every_arg=false",
-    "SplitTooLongLine: align_new_line=True",
-    "SplitTooLongLine: line_length=120"
-]
 
 [tool.poetry.group.test.dependencies]
 robotframework = "^7.2.0"

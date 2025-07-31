@@ -1,0 +1,52 @@
+# Zephyr: Bad JQL Characters +-&|!(){}[]^~*?\:
+[tool.robocop]
+ignore = [
+    "VAR04"
+    "VAR05",
+    "VAR06",
+]
+exclude = [
+    "0305",
+    "0319",
+    "0916", 
+    "0930", 
+    "0931"
+    ]
+configure = [
+    "not-allowed-char-in-name.pattern=[\"+*.|(){}[\\]&!^~?:\\-\\\\]"
+]
+
+[tool.robocop.format]
+diff = true
+overwrite = true
+configure = [
+    "AlignSettingsSection.up_to_column=2",
+    "AlignVariablesSection.up_to_column=3",
+    "AlignKeywordsSection.enabled=True",
+    "AlignKeywordsSection.alignment_type=auto",
+    "AlignKeywordsSection.widths=0",
+    "AlignKeywordsSection.handle_too_long=ignore_rest",
+    "AlignKeywordsSection.skip_settings=True",
+    "AlignTestCasesSection.enabled=True",
+    "AlignTestCasesSection.alignment_type=auto",
+    "AlignTestCasesSection.widths=0",
+    "AlignTestCasesSection.handle_too_long=ignore_rest",
+    "AlignTestCasesSection.skip_settings=True",
+    "DiscardEmptySections.allow_only_comments=True",
+    "NormalizeAssignments.equal_sign_type=remove",
+    "NormalizeNewLines.consecutive_lines=0",
+    "NormalizeNewLines.keyword_lines=1",
+    "NormalizeNewLines.section_lines=2",
+    "NormalizeNewLines.separate_templated_tests=True",
+    "NormalizeNewLines.test_case_lines=1",
+    "NormalizeSectionHeaderName.uppercase=false",
+    "NormalizeSeparators",
+    "OrderSettings.test_before=documentation,tags,timeout,setup,template",
+    "OrderSettings.test_after=teardown",
+    "OrderSettingsSection.group_order=documentation,imports,tags,settings",
+    "OrderSettingsSection.new_lines_between_groups=2",
+    "ReplaceRunKeywordIf",
+    "SplitTooLongLine.align_new_line=True",
+    "SplitTooLongLine.line_length=120",
+    "SplitTooLongLine.split_on_every_arg=false"
+]
