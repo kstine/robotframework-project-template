@@ -9,13 +9,13 @@
 -A Data/ArgumentsFiles/Common/CommonArguments.robot
 -A Data/ArgumentsFiles/Common/PythonPathArguments.robot
 
---reporttitle Report for S1 Platform Automation Project
---logtitle Log for S1 Platform Automation Project
+--reporttitle Report for Project
+--logtitle Log for Project
 
 # -v BROWSER_STRATEGY:persistent
 # -v BROWSER_IS_HEADLESS:False
 -v SOVOS_ENVIRONMENT:QA
--V Data/ArgumentsFiles/CommonTestData.yaml
+# -V Data/ArgumentsFiles/CommonTestData.yaml
 --dryrun
 -L TRACE
 Tests
