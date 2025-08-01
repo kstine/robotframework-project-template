@@ -208,9 +208,8 @@ __marimo__/
 
 # Untracked Folders
 .settings/*
-Results/*
 Data/ArgumentsFiles/Local/*
-allure*
+Results/*
 UserData
 
 # Untracked Files
@@ -221,6 +220,6 @@ interactive_console_output.xml
 .robot.toml
 
 # exception to the rule
-!Results/.gitkeep
-!Results/results_readme.md
 !Data/ArgumentsFiles/Local/.gitkeep
+!Results/.gitkeep
+!Results/results.md

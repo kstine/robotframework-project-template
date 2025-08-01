@@ -7,7 +7,7 @@ xunit = "junit.xml"
 
 [profiles.local]
 inherits = "common"
-args = ["-A", "Data/ArgumentsFiles/Local/Arguments.robot"]
+args = ["-A", "Data/ArgumentsFiles/Common/RunAllExamples.robot"]
 paths = ["Tests"]
 
 [profiles.run-all]
