@@ -18,7 +18,12 @@ paths = ["Tests"]
 inherits = "run-all"
 dry-run = true
 
-[profiles.example]
+[profiles.browser]
 inherits = "common"
-suites = ["Example"]
+suites = ["BrowserTest"]
+paths = ["Tests"]
+
+[profiles.requests]
+inherits = "common"
+suites = ["RequestsTest"]
 paths = ["Tests"]

@@ -205,3 +205,22 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Untracked Folders
+.settings/*
+Results/*
+Data/ArgumentsFiles/Local/*
+allure*
+UserData
+
+# Untracked Files
+*.pyc
+*.flake8
+.vscode/settings.json
+interactive_console_output.xml
+.robot.toml
+
+# exception to the rule
+!Results/.gitkeep
+!Results/results_readme.md
+!Data/ArgumentsFiles/Local/.gitkeep
