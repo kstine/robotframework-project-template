@@ -8,7 +8,6 @@ from Browser import Browser
 from Browser.base.librarycomponent import LibraryComponent
 from robot.api.deco import keyword
 from robot.api.logger import logging
-# from robot.libraries.BuiltIn import BuiltIn
 
 
 class BrowserUtilitiesPlugin(LibraryComponent):

@@ -8,10 +8,8 @@
 # =============================================================================
 -A Data/ArgumentsFiles/Common/CommonArguments.robot
 -A Data/ArgumentsFiles/Common/PythonPathArguments.robot
-
 --reporttitle Report for Project
 --logtitle Log for Project
-
 # -v BROWSER_STRATEGY:persistent
 # -v BROWSER_IS_HEADLESS:False
 -v SOVOS_ENVIRONMENT:QA

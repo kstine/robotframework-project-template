@@ -7,12 +7,12 @@ Variables           BrowserConfiguration.yaml
 
 
 *** Variables ***
-@{WEB_BROWSER_PERMISSIONS}  clipboard-read    clipboard-write
+@{WEB_BROWSER_PERMISSIONS}      clipboard-read                      clipboard-write
 &{WEB_BROWSER_ARGUMENTS}
-...                         browser=${WEB_BROWSER}
-...                         headless=${BROWSER_IS_HEADLESS}
-&{CONTEXT_ARGUMENTS}        viewport=${NONE}
-${USER_DATA_DIRECTORY}      ${NONE}
+...                             browser=${WEB_BROWSER}
+...                             headless=${BROWSER_IS_HEADLESS}
+&{CONTEXT_ARGUMENTS}            viewport=${NONE}
+${USER_DATA_DIRECTORY}          ${NONE}
 
 
 *** Keywords ***
@@ -184,12 +184,12 @@ Remove User Data For New Persistent Context
     IF    '${BROWSER_STRATEGY}'=='persistent' and ${DELETE_USER_DATA}
         TRY
             Wait Until Keyword Succeeds    3x    1s    Empty Directory    ${USER_DATA_DIRECTORY}
-            Log                            ${USER_DATA_DIRECTORY} emptied.             CONSOLE
+            Log                             ${USER_DATA_DIRECTORY} emptied.     CONSOLE
         EXCEPT    AS    ${error}
-            Log    ${error}    WARN
+            Log     ${error}    WARN
         END
     ELSE
-        Log     Will not empty ${USER_DATA_DIRECTORY}      CONSOLE
+        Log     Will not empty ${USER_DATA_DIRECTORY}       CONSOLE
     END
 
 Set Browser Window Resolution

@@ -9,15 +9,15 @@ Get List Of Texts
     [Documentation]    Returns a list of text from the given locator
     ...
     ...    Arguments:
-    ...    - locator(str):required
-    ...    - filter_empty(str): defaults to [FALSE]
+    ...    - locator (str):required
+    ...    - filter_empty (str): defaults to [FALSE]
     ...
     ...    Returns:
     ...    - (list[str]): list of texts
     ...
     [Arguments]    ${locator}    ${filter_empty}=${FALSE}
     ${elements}         Get Elements    ${locator}
-    ${texts}            Create List
+    ${texts}            Create List  # robocop: off=replace-create-with-var
     FOR    ${elem}    IN    @{elements}
         TRY
             ${text}             Get Text    ${elem}
@@ -49,6 +49,7 @@ Try To Scroll To Last Row
     ...    Arguments:
     ...    - row_locator (str): required
     ...    - scrolls (str): Defaults to [1]
+    ...
     [Arguments]    ${row_locator}    ${scrolls}=1
     FOR    ${i}    IN RANGE    ${scrolls}
         Log                     Scrolls: ${i}
@@ -63,20 +64,20 @@ Try To Scroll To Last Row
 
 Custom URL Wait
     [Documentation]    Attempts to wait for a URL in two different ways:
-    ...     First exact match of url,
-    ...     Then retries with contains.
+    ...    First exact match of url,
+    ...    Then retries with contains.
     ...
     ...    Arguments:
-    ...    - url(str): required
+    ...    - url (str): required
     ...
     ...    Asserts:
     ...    Wait For Condition
     ...
-    [Arguments]   ${url}
+    [Arguments]    ${url}
     TRY
         Wait For Condition      URL                             ==      ${url}
         ...                     timeout=10
     EXCEPT    AS    ${error}
         Log                     ${error}: Trying again...       WARN
-        Wait For Condition      URL                             *=      ${url}    # robocop: off=undefined-argument-value
+        Wait For Condition      URL                             *=      ${url}  # robocop: off=undefined-argument-value
     END
