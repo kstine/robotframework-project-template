@@ -78,5 +78,5 @@ Custom URL Wait
         ...                     timeout=10
     EXCEPT    AS    ${error}
         Log                     ${error}: Trying again...       WARN
-        Wait For Condition      URL                             *=      ${url}
+        Wait For Condition      URL                             *=      ${url}    # robocop: off=undefined-argument-value
     END
