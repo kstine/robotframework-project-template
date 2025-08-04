@@ -8,15 +8,15 @@ Browser Library Resource for Robot Framework Automation Projects
 __author__ = "Kelby Stine"
 __authors__ = []
 __contact__ = "kelby.stine@sovos.com"
-__copyright__ = "Copyright 2024, Sovos Inc."
+__copyright__ = "Copyright 2025, Sovos Inc."
 __credits__ = []
-__date__ = "2024/06/26"
+__date__ = "2025/08/04"
 __deprecated__ = False
 __email__ = "kelby.stine@sovos.com"
 __license__ = ""
 __maintainer__ = "developer"
 __status__ = "Production"
-__version__ = "1.0.5"
+__version__ = "1.1.0"
 
 
 def get_browser_resource_metadata() -> dict:
