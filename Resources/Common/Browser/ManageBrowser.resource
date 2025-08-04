@@ -7,12 +7,14 @@ Variables           BrowserConfiguration.yaml
 
 
 *** Variables ***
-@{WEB_BROWSER_PERMISSIONS}      clipboard-read                      clipboard-write
+${DELETE_USER_DATA}             ${NONE}
+&{CONTEXT_ARGUMENTS}            viewport=${NONE}
+${USER_DATA_DIRECTORY}          ${NONE}
 &{WEB_BROWSER_ARGUMENTS}
 ...                             browser=${WEB_BROWSER}
 ...                             headless=${BROWSER_IS_HEADLESS}
-&{CONTEXT_ARGUMENTS}            viewport=${NONE}
-${USER_DATA_DIRECTORY}          ${NONE}
+${WEB_BROWSER_DOWNLOAD_PATH}    ${EMPTY}
+@{WEB_BROWSER_PERMISSIONS}      clipboard-read                      clipboard-write
 
 
 *** Keywords ***
@@ -136,14 +138,12 @@ Set Delete User Data Global Variable
     ...    Defaults to ${TRUE}
     ...
     ...    Sets:
-    ...    - DELETE_USER_DATA(bool): GLOBAL
+    ...    - DELETE_USER_DATA (bool): GLOBAL
     ...
-    TRY
-        Variable Should Exist       ${DELETE_USER_DATA}
-    EXCEPT
+    IF    ${DELETE_USER_DATA} is None
         Set Global Variable     ${DELETE_USER_DATA}     ${TRUE}
     END
-    Log                         DELETE_USER_DATA Set To: ${DELETE_USER_DATA}    CONSOLE
+    Log                     DELETE_USER_DATA Set To: ${DELETE_USER_DATA}    CONSOLE
 
 Quit Browser
     [Documentation]    Closes the current browser instance
@@ -151,9 +151,9 @@ Quit Browser
     ...    Returns:
     ...    - (str): browser id
     ...
-    Set Local Variable      @{current_list}     CURRENT
-    ${browser_ids}          Get Browser Ids     @{current_list}
-    Close Browser           @{current_list}
+    VAR    @{current_list}    CURRENT
+    ${browser_ids}      Get Browser Ids     @{current_list}
+    Close Browser       @{current_list}
     RETURN    ${browser_ids}
 
 Quit Context
@@ -162,9 +162,9 @@ Quit Context
     ...    Returns:
     ...    - (str): context id
     ...
-    Set Local Variable      @{current_list}     CURRENT             CURRENT
-    ${context_ids}          Get Context Ids     @{current_list}
-    Close Context           @{current_list}
+    VAR    @{current_list}    CURRENT    CURRENT
+    ${context_ids}      Get Context Ids     @{current_list}
+    Close Context       @{current_list}
     RETURN    ${context_ids}
 
 Quit Page
@@ -173,9 +173,9 @@ Quit Page
     ...    Returns:
     ...    - (str): page id
     ...
-    Set Local Variable      @{current_list}     CURRENT             CURRENT     CURRENT
-    ${page_ids}             Get Page Ids        @{current_list}
-    Close Page              @{current_list}
+    VAR    @{current_list}    CURRENT    CURRENT    CURRENT
+    ${page_ids}     Get Page Ids        @{current_list}
+    Close Page      @{current_list}
     RETURN    ${page_ids}
 
 Remove User Data For New Persistent Context
@@ -209,10 +209,10 @@ Set User Data Directory Variable
     [Documentation]    Sets the global variable for the browser user data
     ...
     ...    Arguments:
-    ...    - user_data_directory(str): defaults to [$DEFAULT_USER_DATA_DIRECTORY]
+    ...    - user_data_directory (str): defaults to [$DEFAULT_USER_DATA_DIRECTORY]
     ...
     ...    Sets:
-    ...    - USER_DATA_DIRECTORY(str): GLOBAL
+    ...    - USER_DATA_DIRECTORY (str): GLOBAL
     ...
     [Arguments]    ${user_data_directory}=${DEFAULT_USER_DATA_DIRECTORY}
     ${user_data_dir}    Join Path    ${EXECDIR}    ${user_data_directory}

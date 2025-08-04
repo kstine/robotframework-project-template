@@ -30,8 +30,8 @@ Create S1 Session
     IF    $s1_url is None
         ${s1_url}       Create S1 Session Url
     END
-    Create Session              ${alias}                        ${s1_url}                       headers=${headers}
-    ...                         disable_warnings=${TRUE}        max_retries=${max_retries}
+    Create Session    ${alias}    ${s1_url}    headers=${headers}    disable_warnings=${TRUE}
+    ...               max_retries=${max_retries}
     IF    $SOVOS_ENVIRONMENT in ['INT', 'UAT', 'STG', 'PRD']
         Mount Context On Session    ${alias}    ${s1_url}
     END

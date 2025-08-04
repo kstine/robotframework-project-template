@@ -14,5 +14,5 @@ Google Test > No Session
 Google Test > With Session
     [Documentation]    Typical example of a requests test leveraging a session.
     [Setup]    Create S1 Session
-    GET On Session      ${DEFAULT_ALIAS}                  /
+    GET On Session      ${DEFAULT_ALIAS}        /
     [Teardown]    Delete All Sessions

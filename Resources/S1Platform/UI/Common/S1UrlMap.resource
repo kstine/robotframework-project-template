@@ -55,7 +55,7 @@ Get S1 Platform UI URL With Extension
     [Documentation]    Creates a URL based on environment and extension.
     ...
     ...    Arguments:
-    ...    - url_ext_name(str): defaults to [None]
+    ...    - url_ext_name (str): defaults to [None]
     ...
     ...    Returns:
     ...    - (str): url with extension
