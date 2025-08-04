@@ -1,0 +1,57 @@
+S1_BASE_URL:
+  DEV: null
+  QA: https://qa-s1.dev.sovos.org
+  INT: https://int-s1.dev.sovos.org
+  STG: https://stg-s1.sovos.com
+  UAT: https://uat-s1.sovos.com
+  PRD: https://s1.sovos.com
+S1_PLATFORM_URL:
+  DEV:
+    DOMAIN: null
+    URL: null
+    NGINX_PORT: null
+  QA:
+    DOMAIN: .dev.sovos.org
+    URL: https://qa-s1.dev.sovos.org
+    NGINX_PORT: null
+  INT:
+    DOMAIN: .sovos.com
+    URL: https://int-s1.sovos.com
+    NGINX_PORT: null
+  STG:
+    DOMAIN: stg-s1.sovos.com
+    URL: https://stg-s1.sovos.com
+    NGINX_PORT: null
+  UAT:
+    DOMAIN: uat-s1.sovos.com
+    URL: https://uat-s1.sovos.com
+    NGINX_PORT: null
+  PRD:
+    DOMAIN: s1.sovos.com
+    URL: https://s1.sovos.com
+    NGINX_PORT: null
+SOVOS_API_GATEWAY_URLS:
+  DEV:
+    DOMAIN: null
+    URL: null
+    NGINX_PORT: null
+  QA:
+    DOMAIN: .dev.sovos.org
+    URL: https://qa-api-s1.dev.sovos.org
+    NGINX_PORT: null
+  INT:
+    DOMAIN: int-api-s1.sovos.com
+    URL: https://int-api-s1.sovos.com
+    NGINX_PORT: null
+  STG:
+    DOMAIN: stg-api-s1.sovos.com
+    URL: https://stg-api-s1.sovos.com
+    NGINX_PORT: null
+  UAT:
+    DOMAIN: uat-api-s1.sovos.com
+    URL: https://uat-api-s1.sovos.com
+    NGINX_PORT: null
+  PRD:
+    DOMAIN: api-s1.sovos.com
+    URL: https://api-s1.sovos.com
+    NGINX_PORT: null
