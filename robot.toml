@@ -1,5 +1,4 @@
 extend-python-path = [".", "Resources", "CustomLibraries"]
-default_profiles = "common"
 
 [profiles.common]
 output-dir = "Results"
