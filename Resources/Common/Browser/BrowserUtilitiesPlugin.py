@@ -42,7 +42,7 @@ class BrowserUtilitiesPlugin(LibraryComponent):
                 text = self.library.get_text(element)
                 texts.append(text)
             except AssertionError as error:
-                logging.warn(error)
+                logging.warning(error)
         if filter_empty:
             texts = [text for text in texts if text]
         return texts

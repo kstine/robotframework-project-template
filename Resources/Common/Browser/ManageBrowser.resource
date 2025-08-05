@@ -43,7 +43,7 @@ Configure Download Path
         Variable Should Exist       ${WEB_BROWSER_DOWNLOAD_PATH}
     EXCEPT
         ${path}                 Join Path                       ${EXECDIR}      Downloads
-        Set Suite Variable      ${WEB_BROWSER_DOWNLOAD_PATH}    ${path}
+        Set Suite Variable      ${WEB_BROWSER_DOWNLOAD_PATH}    ${path}    # robocop: off=replace-set-variable-with-var
     END
     Log                         Download Folder: ${WEB_BROWSER_DOWNLOAD_PATH}       INFO
 
@@ -141,7 +141,7 @@ Set Delete User Data Global Variable
     ...    - DELETE_USER_DATA (bool): GLOBAL
     ...
     IF    ${DELETE_USER_DATA} is None
-        Set Global Variable     ${DELETE_USER_DATA}     ${TRUE}
+        Set Global Variable     ${DELETE_USER_DATA}     ${TRUE}     # robocop: off=replace-set-variable-with-var
     END
     Log                     DELETE_USER_DATA Set To: ${DELETE_USER_DATA}    CONSOLE
 
@@ -151,9 +151,9 @@ Quit Browser
     ...    Returns:
     ...    - (str): browser id
     ...
-    VAR    @{current_list}    CURRENT
-    ${browser_ids}      Get Browser Ids     @{current_list}
-    Close Browser       @{current_list}
+    Set Local Variable      @{current_list}     CURRENT      # robocop: off=replace-set-variable-with-var
+    ${browser_ids}          Get Browser Ids     @{current_list}
+    Close Browser           @{current_list}
     RETURN    ${browser_ids}
 
 Quit Context
@@ -162,9 +162,9 @@ Quit Context
     ...    Returns:
     ...    - (str): context id
     ...
-    VAR    @{current_list}    CURRENT    CURRENT
-    ${context_ids}      Get Context Ids     @{current_list}
-    Close Context       @{current_list}
+    Set Local Variable      @{current_list}     CURRENT             CURRENT    # robocop: off=replace-set-variable-with-var
+    ${context_ids}          Get Context Ids     @{current_list}
+    Close Context           @{current_list}
     RETURN    ${context_ids}
 
 Quit Page
@@ -173,9 +173,9 @@ Quit Page
     ...    Returns:
     ...    - (str): page id
     ...
-    VAR    @{current_list}    CURRENT    CURRENT    CURRENT
-    ${page_ids}     Get Page Ids        @{current_list}
-    Close Page      @{current_list}
+    Set Local Variable    @{current_list}    CURRENT    CURRENT    CURRENT    # robocop: off=replace-set-variable-with-var
+    ${page_ids}             Get Page Ids        @{current_list}
+    Close Page              @{current_list}
     RETURN    ${page_ids}
 
 Remove User Data For New Persistent Context
@@ -216,7 +216,7 @@ Set User Data Directory Variable
     ...
     [Arguments]    ${user_data_directory}=${DEFAULT_USER_DATA_DIRECTORY}
     ${user_data_dir}    Join Path    ${EXECDIR}    ${user_data_directory}
-    Set Global Variable     ${USER_DATA_DIRECTORY}                                      ${user_data_dir}
+    Set Global Variable    ${USER_DATA_DIRECTORY}    ${user_data_dir}    # robocop: off=replace-set-variable-with-var
 
 Switch Page To Browser Report Page
     [Documentation]    This is an example of how to move between pages.

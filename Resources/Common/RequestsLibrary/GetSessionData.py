@@ -45,13 +45,24 @@ class GetSessionData():
     @keyword("Get All Data")
     def get_all_data(self, alias: str) -> dict[str, Any]:
         """
-        _summary_
+        Retrieves all non-method attributes and their values from a session
+        object.
+
+        This method extracts all accessible attributes from the session object
+        that are not methods or private attributes (those starting with '__').
+        This is useful for debugging or inspecting the complete state of a
+        session.
 
         Args:
-            alias (str): _description_
+            alias (str): The session alias/name to retrieve data from
 
         Returns:
-            dict[str, Any]: _description_
+            dict[str, Any]: Dictionary containing all session attributes and
+                their values
+
+        Example:
+            | ${session_data}= | Get All Data | my_session |
+            | Log | ${session_data} |
         """
         session: Session = self.rf_requests._cache.switch(alias)
         all_attributes = [
@@ -64,13 +75,21 @@ class GetSessionData():
     @keyword("Get Session Adapters")
     def get_session_adapters(self, alias: str) -> MutableMapping[Any, Any]:
         """
-        Gets the session adapter objects.
+        Retrieves the session adapter objects used for HTTP requests.
+
+        Session adapters handle the connection pooling and HTTP protocol
+        implementation for different URL schemes (http, https, etc.).
 
         Args:
-            alias (str): required
+            alias (str): The session alias/name to retrieve adapters from
 
         Returns:
-            MutableMapping[Any, Any]: map of adapters
+            MutableMapping[Any, Any]: Dictionary mapping URL schemes to their
+                corresponding adapter objects
+
+        Example:
+            | ${adapters}= | Get Session Adapters | my_session |
+            | Log | ${adapters} |
         """
         session = self._get_session_object(alias)
         return session.adapters
@@ -78,13 +97,21 @@ class GetSessionData():
     @keyword("Get Session Auth")
     def get_session_auth(self, alias: str) -> HTTPBasicAuth:
         """
-        Get the session auth object
+        Retrieves the authentication object configured for the session.
+
+        Returns the authentication handler (e.g., HTTPBasicAuth,
+        HTTPDigestAuth) that is used for all requests made with this session.
 
         Args:
-            alias (str): required
+            alias (str): The session alias/name to retrieve auth from
 
         Returns:
-            HTTPBasicAuth: auth object
+            HTTPBasicAuth: The authentication object, or None if no auth is
+                configured
+
+        Example:
+            | ${auth}= | Get Session Auth | my_session |
+            | Log | ${auth} |
         """
         session = self._get_session_object(alias)
         return session.auth
@@ -92,13 +119,21 @@ class GetSessionData():
     @keyword("Get Session Certificate")
     def get_session_certificate(self, alias: str) -> tuple | None:
         """
-        Get the session certs.
+        Retrieves the SSL certificate configuration for the session.
+
+        Returns the client certificate and key files configured for SSL/TLS
+        authentication with the server.
 
         Args:
-            alias (str): required
+            alias (str): The session alias/name to retrieve certificate from
 
         Returns:
-            tuple | None: certs
+            tuple | None: Tuple containing (cert_file, key_file) or None if no
+                certificates are configured
+
+        Example:
+            | ${certs}= | Get Session Certificate | my_session |
+            | Log | ${certs} |
         """
         session = self._get_session_object(alias)
         return session.cert
@@ -106,13 +141,21 @@ class GetSessionData():
     @keyword("Get Session Cookies")
     def get_session_cookies(self, alias: str) -> dict:
         """
-        Gets session cookies.
+        Retrieves all cookies stored in the session.
+
+        Returns a dictionary of all cookies that have been set for this
+        session, including cookies received from server responses and manually
+        added cookies.
 
         Args:
-            alias (str): required
+            alias (str): The session alias/name to retrieve cookies from
 
         Returns:
-            dict: cookies
+            dict: Dictionary mapping cookie names to their values
+
+        Example:
+            | ${cookies}= | Get Session Cookies | my_session |
+            | Log | ${cookies} |
         """
         session = self._get_session_object(alias)
         return session.cookies.get_dict()
