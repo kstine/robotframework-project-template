@@ -1,6 +1,8 @@
 # robotframework-project-template
 
-Core project structure for new Robot Framework Repos
+A Robot Framework template for new projects and update existing projects.
+
+
 
 ## Prerequisites
 

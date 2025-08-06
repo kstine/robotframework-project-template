@@ -1,7 +1,7 @@
 [project]
 name = "robotframework-project-template"
 version = "0.1.0"
-description = ""
+description = "A Robot Framework template for new projects and update existing projects."
 authors = [
     {name = "Kelby Stine",email = "kelbystine@gmail.com"}
 ]
