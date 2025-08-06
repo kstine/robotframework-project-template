@@ -22,8 +22,7 @@ Create S1 Session
     ...    - max_retries (int): defaults to [3]
     ...    - headers (dict): defaults to [BASE_HEADER_SETTINGS]
     ...
-    [Arguments]
-    ...    ${alias}=${DEFAULT_ALIAS}
+    [Arguments]    ${alias}=${DEFAULT_ALIAS}
     ...    ${s1_url}=${NONE}
     ...    ${max_retries}=3
     ...    ${headers}=${BASE_HEADER_SETTINGS}
@@ -66,5 +65,5 @@ Update X Request Context
     ...    - x_request_context(str): required
     ...
     [Arguments]    ${alias}    ${x_request_context}
-    VAR    &{context_header}    x-request-context=${x_request_context}
-    Update Session      ${alias}    headers=${context_header}
+    Set Local Variable    &{context_header}    x-request-context=${x_request_context}    # robocop: off=replace-set-variable-with-var
+    Update Session          ${alias}                headers=${context_header}

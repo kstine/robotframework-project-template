@@ -1,12 +1,40 @@
 # robotframework-project-template
 
-A Robot Framework template for new projects and update existing projects.
-
-
+Core project structure for new Robot Framework Repos
 
 ## Prerequisites
 
-Before setting up this project, ensure you have the following core dependencies installed:
+### Windows PowerShell Execution Policy Setup
+
+**Important for Windows Users:** Before installing any dependencies, you must configure PowerShell's execution policy to allow script execution. This is required for Node.js, npm, and Poetry to function properly.
+
+1. **Open PowerShell as Administrator:**
+   - Press `Windows + X` and select "Windows PowerShell (Admin)" or "Terminal (Admin)"
+   - Or search for "PowerShell" in the Start menu, right-click, and select "Run as administrator"
+
+2. **Set the execution policy:**
+
+   ```powershell
+   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+   ```
+
+3. **Verify the change:**
+
+   ```powershell
+   Get-ExecutionPolicy -Scope CurrentUser
+   ```
+
+**Note:** We recommend using `RemoteSigned` instead of `Unrestricted` for better security. This allows local scripts to run while requiring downloaded scripts to be signed by a trusted publisher.
+
+**Alternative (if RemoteSigned doesn't work):**
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+```
+
+---
+
+**Before setting up this project, ensure you have the following core dependencies installed:**
 
 ### 1. Python
 
@@ -49,7 +77,7 @@ Before setting up this project, ensure you have the following core dependencies 
 - Download from [NodeJS](https://nodejs.org/en/download)
   Minimum Version 20+
 
-### 4. Verify installation:
+### 4. Verify installation
 
 ```shell
 python -V
@@ -57,6 +85,26 @@ poetry -V
 node -v
 npm -v
 ```
+
+**Or use the verification scripts:**
+
+```powershell
+# PowerShell (recommended)
+.\Scripts\verify_python_installation.ps1
+
+# Batch file (alternative)
+.\Scripts\verify_python_installation.bat
+```
+
+```shell
+python Scripts/verify_poetry_installation.py
+```
+
+```shell
+python Scripts/verify_node_installation.py
+```
+
+---
 
 ## Install Python Dependencies
 
@@ -76,6 +124,12 @@ This project uses Poetry for dependency management. Install all Python dependenc
 
     ```shell
     poetry activate
+    ```
+
+3. Start a python virtual environment shell.
+
+    ```shell
+    poetry shell
     ```
 
 ## Install Additional Dependencies
@@ -105,12 +159,16 @@ Optional:
 
 ## Project Structure
 
-- `Tests/` - Robot Framework test files
-- `Resources/` - Reusable keywords and resources
-- `Data/` - Test data and configuration files
-- `Results/` - Test execution results and reports
+- `AzurePipelines/` - Pipeline code files
 - `CustomLibraries/` - Custom Python libraries
+- `Data/` - Test data and configuration files
+- `Resources/` - Reusable keywords and resources
+- `Results/` - Test execution results and reports
+- `Scripts/` - Useful project scripts
 - `Tasks/` - Task-specific configurations
+- `Tests/` - Robot Framework test files
+
+[Directory Tree](directorytree.md)
 
 ## Running Tests
 
@@ -137,7 +195,7 @@ robot -d Results -x junit.xml --pythonpath . --pythonpath CustomLibraries --pyth
 It is best practice to leverage arguments files:
 
 ```shell
-robot -A Data/ArgumentsFiles/Common/RunAllExamples.robot
+robot -A Data/ArgumentsFiles/Common/RunAllExamples.robot Tests
 ```
 
 ### Running using RobotCode

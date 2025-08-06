@@ -1,0 +1,74 @@
+{
+  "users": {
+    "admin": {
+      "username": "admin@sovos.com",
+      "password": "Admin123!",
+      "role": "administrator"
+    },
+    "test_user": {
+      "username": "test@sovos.com",
+      "password": "Test123!",
+      "role": "user"
+    },
+    "invalid_user": {
+      "username": "invalid@sovos.com",
+      "password": "WrongPassword",
+      "role": "none"
+    }
+  },
+  "environments": {
+    "dev": {
+      "base_url": "https://dev-s1.dev.sovos.org",
+      "timeout": 10
+    },
+    "qa": {
+      "base_url": "https://qa-s1.dev.sovos.org",
+      "timeout": 15
+    },
+    "stage": {
+      "base_url": "https://stage-s1.dev.sovos.org",
+      "timeout": 20
+    },
+    "prod": {
+      "base_url": "https://s1.sovos.org",
+      "timeout": 30
+    }
+  },
+  "test_scenarios": {
+    "login_success": {
+      "description": "Successful login with valid credentials",
+      "username": "admin@sovos.com",
+      "password": "Admin123!",
+      "expected_result": "success"
+    },
+    "login_failure": {
+      "description": "Failed login with invalid credentials",
+      "username": "invalid@sovos.com",
+      "password": "WrongPassword",
+      "expected_result": "failure"
+    },
+    "empty_credentials": {
+      "description": "Login attempt with empty credentials",
+      "username": "",
+      "password": "",
+      "expected_result": "failure"
+    }
+  },
+  "page_elements": {
+    "login_page": {
+      "username_field": "id=username",
+      "password_field": "id=password",
+      "submit_button": "id=login-button",
+      "error_message": "class=error-message",
+      "success_message": "class=success-message"
+    }
+  },
+  "test_config": {
+    "browser": "chrome",
+    "headless": false,
+    "implicit_wait": 10,
+    "page_load_timeout": 30,
+    "screenshot_on_failure": true,
+    "video_recording": false
+  }
+} 

@@ -1,0 +1,10 @@
+{
+    "EXPECTED_TEST_CONFIG": {
+        "browser": "chrome",
+        "headless": false,
+        "implicit_wait": 10,
+        "page_load_timeout": 30,
+        "screenshot_on_failure": true,
+        "video_recording": false
+    }
+}
