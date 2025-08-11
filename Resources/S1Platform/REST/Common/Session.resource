@@ -65,5 +65,6 @@ Update X Request Context
     ...    - x_request_context(str): required
     ...
     [Arguments]    ${alias}    ${x_request_context}
-    Set Local Variable    &{context_header}    x-request-context=${x_request_context}    # robocop: off=replace-set-variable-with-var
+    # robocop: off=replace-set-variable-with-var
+    Set Local Variable      &{context_header}       x-request-context=${x_request_context}
     Update Session          ${alias}                headers=${context_header}

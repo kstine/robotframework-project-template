@@ -1,11 +1,21 @@
-BROWSER_STRATEGY: persistent
-WEB_BROWSER: chromium  # chromium, firefox, webkit
+SELENIUM_STRATEGY: local
+WEB_BROWSER: chrome  # chromium, firefox, webkit
 BROWSER_IS_HEADLESS: true
-BROWSER_TIMEOUT: 60
-CHROME_ARGS:
-  - --flag-switches-begin
-  - --flag-switches-end
-DEFAULT_USER_DATA_DIRECTORY: UserData
+USER_DATA_DIR: Results/UserData
+CHROME_EXECUTABLE_PATH: null  # Or comment out to use webdriver-manager auto-detection
+SELENIUM_CONFIGURATION:
+  SPEED: 0
+  TIMEOUT: 60
+REMOTE_WEBDRIVER_CONFIGURATION:
+  URL: http://localhost:4444
+  URI: /wd/hub
+DOCKER_COMPOSE_CONFIGURATION:
+  URL: http://selenium-chrome-server:4444
+  OVERVIEW: /ui
+  SESSION: /ui/#/sessions
+  HELP: /ui/#/help
+  VNC_SERVER: http://localhost:7900/?autoconnect=1&resize=scale&password=secret
+  HOST_VOLUME: /Downloads
 DEFAULT_WINDOW_RESOLUTION: FHD
 DISPLAY_RESOLUTION_DICT:
   MAX:
